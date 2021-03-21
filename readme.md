@@ -1,6 +1,9 @@
+# Soko Wars
+JS Puzzler Hackathon Entry
+
 ![phaser3](https://user-images.githubusercontent.com/2236153/71606463-37a0da80-2b2e-11ea-9b5f-5d26ccc84f91.png)
 
-# Phaser 3 + Parcel + React
+## Phaser 3 + Parcel + React
 
 ## Contributers:
 - Dru Daniels
