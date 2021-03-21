@@ -1,4 +1,10 @@
 import Phaser from 'phaser'
+
+import { offsetForDirection } from '../../utils/TileUtils'
+import { baseTweenForDirection } from '../../utils/TweenUtils'
+
+import { Direction } from '../../consts/Direction'
+import { boxColorToTargeColor } from '../../utils/ColorUtils'
 // import astromechdroid from "../../public/assets/astromechdroid.png"
 
 export default class Game extends Phaser.Scene {
@@ -26,13 +32,13 @@ export default class Game extends Phaser.Scene {
 
     create() {
         const level = [
-            [99,  99,  99,  99, 99, 99, 99, 99, 99, 99],
-            [99,   0,   0,   0,  0,  0,  0,  0,  0, 99],
-            [99,   0,   0,   0,  0,  0,  0,  0,  0, 99],
-            [99,   0,   0,  51,  8,  0, 52,  0,  0, 99],
-            [99,   0,   0,   0,  0,  0,  0,  0,  0, 99],
-            [99,   0,   0,   0,  0,  0,  0,  0,  0, 99],
-            [99,   0,   0,   0,  0,  0,  0,  0,  0, 99],
+            [99,  99,  99,  99,  99,  99,  99,  99,  99,  99],
+            [99,   0,   0,   0,   0,   0,   0,   0,   0,  99],
+            [99,   0,   0,   0,   0,   0,   0,   0,   0,  99],
+            [99,   0,   0,  51,   8,   0,  52,   0,   0,  99],
+            [99,   0,   0,   0,   0,   0,   0,   0,   0,  99],
+            [99,   0,   0,   0,   0,   0,   0,   0,   0,  99],
+            [99,   0,   0,   0,   0,   0,   0,   0,   0,  99],
             [99,  99,  99,  99,  99,  99,  99,  99,  99,  99]
 
         ]
@@ -46,57 +52,12 @@ export default class Game extends Phaser.Scene {
         const layer = map.createLayer(0, tiles, 0, 0)
 
         // this.player = this.add.sprite(400, 300, 'r2', 5).setScale(1.5)
+        this.createPlayerAnims()
+        
         this.player = layer.createFromTiles(52, 0, { key: 'tiles', frame: 52 }).pop()
         this.player?.setOrigin(0)
 
-        this.createPlayerAnims()
-
         this.boxes = layer.createFromTiles(8, 0, { key: 'tiles', frame: 8 }).map(box => box.setOrigin(0))
-        // this.anims.create({
-        //     key: 'idle-left',
-        //     frames: [{ key: 'r2', frame: 4 }],
-        // })
-
-        // this.anims.create({
-        //     key: 'idle-right',
-        //     frames: [{ key: 'r2', frame: 8 }],
-        // })
-
-        // this.anims.create({
-        //     key: 'idle-up',
-        //     frames: [{ key: 'r2', frame: 0 }],
-        // })
-
-        // this.anims.create({
-        //     key: 'idle-down',
-        //     frames: [{ key: 'r2', frame: 12 }],
-        // })
-
-        // this.anims.create({
-        //     key: 'left',
-        //     frames: this.anims.generateFrameNames('r2', { start: 4, end: 7 }),
-        //     frameRate: 5,
-        //     repeat: -1
-        // })
-
-        // this.anims.create({
-        //     key: 'right',
-        //     frames: this.anims.generateFrameNames('r2', { start: 8, end: 11 }),
-        //     frameRate: 5,
-        //     repeat: -1
-        // })
-        // this.anims.create({
-        //     key: 'up',
-        //     frames: this.anims.generateFrameNames('r2', { start: 0, end: 3 }),
-        //     frameRate: 5,
-        //     repeat: -1
-        // })
-        // this.anims.create({
-        //     key: 'down',
-        //     frames: this.anims.generateFrameNames('r2', { start: 12, end: 15 }),
-        //     frameRate: 5,
-        //     repeat: -1
-        // })
     }
 
     update() {
@@ -104,13 +65,13 @@ export default class Game extends Phaser.Scene {
             return
         }
 
-        const justLeft = Phaser.Input.Keyboard.JustDown(this.cursors.left)
-        const justRight = Phaser.Input.Keyboard.JustDown(this.cursors.right)
-        const justUp = Phaser.Input.Keyboard.JustDown(this.cursors.up)
-        const justDown = Phaser.Input.Keyboard.JustDown(this.cursors.down)
+        const justLeft = Phaser.Input.Keyboard.JustDown(this.cursors.left!)
+        const justRight = Phaser.Input.Keyboard.JustDown(this.cursors.right!)
+        const justUp = Phaser.Input.Keyboard.JustDown(this.cursors.up!)
+        const justDown = Phaser.Input.Keyboard.JustDown(this.cursors.down!)
 
         if (justLeft) {
-            const box = this.getBoxAt(this.player.x - 32, this.player.y)
+            const box = this.getBoxAt(this.player.x - 32, this.player.y + 32)
             const baseTween = {
                 x: '-=64',
                 duration: 500,
@@ -119,7 +80,7 @@ export default class Game extends Phaser.Scene {
                 this.player?.anims.play('left', true)
             })
         } else if (justRight) {
-            const box = this.getBoxAt(this.player.x + 96, this.player.y)
+            const box = this.getBoxAt(this.player.x + 96, this.player.y + 32)
             const baseTween = {
                 x: '+=64',
                 duration: 500,
@@ -128,7 +89,7 @@ export default class Game extends Phaser.Scene {
                 this.player?.anims.play('right', true)
             })
         } else if (justUp) {
-            const box = this.getBoxAt(this.player.x, this.player.y - 32)
+            const box = this.getBoxAt(this.player.x + 32, this.player.y - 32)
             const baseTween = {
                 y: '-=64',
                 duration: 500,
@@ -137,7 +98,7 @@ export default class Game extends Phaser.Scene {
                 this.player?.anims.play('up', true)
             })
         } else if (justDown) {
-            const box = this.getBoxAt(this.player.x, this.player.y + 96)
+            const box = this.getBoxAt(this.player.x + 32, this.player.y + 96)
             const baseTween = {
                 y: '+=64',
                 duration: 500,
@@ -145,11 +106,6 @@ export default class Game extends Phaser.Scene {
             this.tweenMove(box, baseTween, () => {
                 this.player?.anims.play('down', true)
             })
-        } else if (this.player?.anims.currentAnim) {
-            const key = this.player?.anims.currentAnim?.key
-            if (!key.startsWith('idle-')) {
-                this.player.anims.play(`idle-${key}`, true)
-            }
         }
     }
 
@@ -236,3 +192,49 @@ export default class Game extends Phaser.Scene {
         })
     }
 }
+
+// this.anims.create({
+        //     key: 'idle-left',
+        //     frames: [{ key: 'r2', frame: 4 }],
+        // })
+
+        // this.anims.create({
+        //     key: 'idle-right',
+        //     frames: [{ key: 'r2', frame: 8 }],
+        // })
+
+        // this.anims.create({
+        //     key: 'idle-up',
+        //     frames: [{ key: 'r2', frame: 0 }],
+        // })
+
+        // this.anims.create({
+        //     key: 'idle-down',
+        //     frames: [{ key: 'r2', frame: 12 }],
+        // })
+
+        // this.anims.create({
+        //     key: 'left',
+        //     frames: this.anims.generateFrameNames('r2', { start: 4, end: 7 }),
+        //     frameRate: 5,
+        //     repeat: -1
+        // })
+
+        // this.anims.create({
+        //     key: 'right',
+        //     frames: this.anims.generateFrameNames('r2', { start: 8, end: 11 }),
+        //     frameRate: 5,
+        //     repeat: -1
+        // })
+        // this.anims.create({
+        //     key: 'up',
+        //     frames: this.anims.generateFrameNames('r2', { start: 0, end: 3 }),
+        //     frameRate: 5,
+        //     repeat: -1
+        // })
+        // this.anims.create({
+        //     key: 'down',
+        //     frames: this.anims.generateFrameNames('r2', { start: 12, end: 15 }),
+        //     frameRate: 5,
+        //     repeat: -1
+        // })
