@@ -6,9 +6,9 @@ JS Puzzler Hackathon Entry
 ## Phaser 3 + Parcel + React
 
 ## Contributers:
-- Dru Daniels
-- Ohad Porat
 - Ross Hurlock
+- Ohad Porat
+- Dru Daniels
 
 ## Try it Out:
 [Click for Demo](https://heroku.com)
