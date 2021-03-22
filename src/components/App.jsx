@@ -5,14 +5,13 @@ import "../assets/scss/main.scss"
 import NavBar from './layout/NavBar'
 import Footer from './layout/Footer'
 import Crawler from './Crawler'
-import GameShow from './GameShow'
-
+import MainContainer from './MainContainer'
 const App = () => {
   return (
     <>
       <Crawler />
       <NavBar />
-      <GameShow />
+      <MainContainer />
       <Footer />
     </>
   );
