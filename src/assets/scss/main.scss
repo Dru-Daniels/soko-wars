@@ -2,6 +2,7 @@
 * {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
   font-family: 'Montserrat', sans-serif;
 }
 
@@ -9,6 +10,8 @@ html {
   position: relative;
   min-height: 100%;
   width: 100%;
+  height: 100%; 
+  overflow:auto;
 }
 
 body{
@@ -71,9 +74,18 @@ body{
 }
 
 // Crawler
+
+// DO NOT DELETE THIS. IT WILL KEEP THE 
+// CODE AT THE TOP OF THE PAGE! BUT ANNOYING DURING DEVELOPMENT 
 .crawler-container {
   background: #000;
   overflow: hidden;
+  // position: fixed;
+  // top: 0;
+  // left: 0;
+  // z-index: 999;
+  // width: 100%;
+  // height: 100%;
 }
 
 .star-wars-intro {
@@ -216,31 +228,32 @@ body{
 @-webkit-keyframes hideDiv {
   0% { -webkit-transform: translateY(100%); opacity: 1; }
   50% { -webkit-transform: translateY(50%); opacity: 0; }
-  100% { -webkit-transform: translateY(0); opacity: 0; display: none; height: 0; }
+  100% { -webkit-transform: translateY(0); opacity: 0; display: none; height: 0; z-index: 0;
+  }
 }
 
 @-moz-keyframes hideDiv {
   0% { -moz-transform: translateY(100%); opacity: 1; }
   50% {  -moz-transform: translateY(50%); opacity: 0; }
-  100% { -moz-transform: translateY(0); opacity: 0; display: none; height: 0; }
+  100% { -moz-transform: translateY(0); opacity: 0; display: none; height: 0; z-index: 0;}
 }
 
 @-ms-keyframes hideDiv {
   0% { -ms-transform: translateY(100%); opacity: 1; }
   50% {  -ms-transform: translateY(50%); opacity: 0; }
-  100% { -ms-transform: translateY(0); opacity: 0; display: none; height: 0;}
+  100% { -ms-transform: translateY(0); opacity: 0; display: none; height: 0; z-index: 0;}
 }
 
 @-o-keyframes hideDiv {
   0% { -o-transform: translateY(100%); opacity: 1; }
   50% { -o-transform: translateY(50%); opacity: 0; }
-  100% { -o-transform: translateY(0); opacity: 0; display: none; height: 0;}
+  100% { -o-transform: translateY(0); opacity: 0; display: none; height: 0; z-index: 0;}
 }
 
 @keyframes hideDiv {
   0% { transform: translateY(100%); opacity: 1; }
   50% { transform: translateY(50%); opacity: 0; }
-  100% { transform: translateY(0); opacity: 0; display: none ; height: 0;}
+  100% { transform: translateY(0); opacity: 0; display: none ; height: 0; z-index: 0;}
 }
 
 // MainContainer

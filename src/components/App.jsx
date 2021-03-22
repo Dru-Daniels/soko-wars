@@ -6,7 +6,9 @@ import NavBar from './layout/NavBar'
 import Footer from './layout/Footer'
 import Crawler from './Crawler'
 import MainContainer from './MainContainer'
+
 const App = () => {
+
   return (
     <>
       <Crawler />
