@@ -4,8 +4,7 @@ import React from "react"
 const Crawler = () => {
 
   return (
-    <div id="top">
-      <div class="crawler-container">
+      <div class="crawler-container" id='hideMe'>
         <div class="star-wars-intro">
             <img
               class="main-logo"
@@ -33,7 +32,6 @@ const Crawler = () => {
           </div>
         </div>
       </div>
-    </div>
   );
 };
 

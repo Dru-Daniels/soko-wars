@@ -2,7 +2,6 @@
 * {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
   font-family: 'Montserrat', sans-serif;
 }
 
@@ -10,8 +9,6 @@ html {
   position: relative;
   min-height: 100%;
   width: 100%;
-  height: 100%; 
-  overflow:auto;
 }
 
 body{
@@ -89,13 +86,13 @@ body{
 }
 
 .star-wars-intro {
+  background-image: url(https://i.dlpng.com/static/png/7029942_preview.png);
+  background-size: cover;
   width: 100%;
   height: 100%;
   font-family: "Droid Sans", arial, verdana, sans-serif;
   font-weight: 700;
   color: #ffd71c;
-  background-image: url(https://i.dlpng.com/static/png/7029942_preview.png);
-  background-size: cover;
   overflow: hidden;
   position: relative;
 }
@@ -228,8 +225,7 @@ body{
 @-webkit-keyframes hideDiv {
   0% { -webkit-transform: translateY(100%); opacity: 1; }
   50% { -webkit-transform: translateY(50%); opacity: 0; }
-  100% { -webkit-transform: translateY(0); opacity: 0; display: none; height: 0; z-index: 0;
-  }
+  100% { -webkit-transform: translateY(0); opacity: 0; display: none; height: 0; z-index: 0;}
 }
 
 @-moz-keyframes hideDiv {
