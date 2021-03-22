@@ -72,48 +72,74 @@ export default class Game extends Phaser.Scene {
         const justDown = Phaser.Input.Keyboard.JustDown(this.cursors.down!)
 
         if (justLeft) {
-            const box = this.getBoxAt(this.player.x - 32, this.player.y + 32)
+            const nextX = this.player.x - 32
+            const nextY = this.player.y + 32
+            const hasWall = this.hasWallAt(nextX, nextY)
+            
+            if (hasWall) {
+                return
+            }
+
             const baseTween = {
                 x: '-=64',
                 duration: 500,
             }
-            this.tweenMove(box, baseTween, () => {
+            this.tweenMove(this.player.x - 32, this.player.y + 32, baseTween, () => {
                 this.player?.anims.play('left', true)
             })
         } else if (justRight) {
-            const box = this.getBoxAt(this.player.x + 96, this.player.y + 32)
+            const nextX = this.player.x + 96
+            const nextY = this.player.y + 32
+            const hasWall = this.hasWallAt(nextX, nextY)
+            
+            if (hasWall) {
+                return
+            }
+
             const baseTween = {
                 x: '+=64',
                 duration: 500,
             }
-            this.tweenMove(box, baseTween, () => {
+            this.tweenMove(this.player.x + 96, this.player.y + 32, baseTween, () => {
                 this.player?.anims.play('right', true)
             })
         } else if (justUp) {
-            if (this.hasWallAt(this.player.x + 32, this.player.y - 32)) {
-                console.log('has wall')
+            const nextX = this.player.x + 32
+            const nextY = this.player.y - 32
+            const hasWall = this.hasWallAt(nextX, nextY)
+
+            if (hasWall) {
+                return 
             }
-            const box = this.getBoxAt(this.player.x + 32, this.player.y - 32)
+            
             const baseTween = {
                 y: '-=64',
                 duration: 500,
             }
-            this.tweenMove(box, baseTween, () => {
+            this.tweenMove(this.player.x + 32, this.player.y - 32, baseTween, () => {
                 this.player?.anims.play('up', true)
             })
         } else if (justDown) {
-            const box = this.getBoxAt(this.player.x + 32, this.player.y + 96)
+            const nextX = this.player.x + 32
+            const nextY = this.player.y + 96
+            const hasWall = this.hasWallAt(nextX, nextY)
+            
+            if (hasWall) {
+                return
+            }
+
             const baseTween = {
                 y: '+=64',
                 duration: 500,
             }
-            this.tweenMove(box, baseTween, () => {
+            this.tweenMove(this.player.x + 32, this.player.y + 96, baseTween, () => {
                 this.player?.anims.play('down', true)
             })
         }
     }
 
-    private tweenMove(box: Phaser.GameObjects.Sprite | undefined, baseTween: any, onStart: () => void) {
+    private tweenMove(x: number, y: number, baseTween: any, onStart: () => void) {
+        const box = this.getBoxAt(x, y)
         if (box) {
             this.tweens.add(Object.assign(baseTween, { targets: box }))
         }
