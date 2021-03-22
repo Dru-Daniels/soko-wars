@@ -120,13 +120,8 @@ export default class Game extends Phaser.Scene {
                 this.player?.anims.play('up', true)
             })
         } else if (justDown) {
-            const nextX = this.player.x + 32
-            const nextY = this.player.y + 96
-            const hasWall = this.hasWallAt(nextX, nextY)
             
-            if (hasWall) {
-                return
-            }
+            
 
             const baseTween = {
                 y: '+=64',
@@ -139,6 +134,16 @@ export default class Game extends Phaser.Scene {
     }
 
     private tweenMove(x: number, y: number, baseTween: any, onStart: () => void) {
+        if (this.tweens.isTweening(this.player!)) {
+            return 
+        }
+        
+        const hasWall = this.hasWallAt(x, y)
+            
+        if (hasWall) {
+            return
+        }
+
         const box = this.getBoxAt(x, y)
         if (box) {
             this.tweens.add(Object.assign(baseTween, { targets: box }))
