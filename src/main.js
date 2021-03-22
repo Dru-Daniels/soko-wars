@@ -7,6 +7,7 @@ import Game from './scenes/Game'
 
 const config = {
 	type: Phaser.AUTO,
+	parent: 'phaser-parent',
 	width: 640,
 	height: 512,
 	physics: {
@@ -21,6 +22,6 @@ const config = {
 const game = new Phaser.Game(config);
 
 ReactDOM.render(
-  <App />,
+  <App/>,
   document.getElementById("root") || document.createElement("div")
 );

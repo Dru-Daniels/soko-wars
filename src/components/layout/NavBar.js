@@ -1,4 +1,5 @@
 import React from "react";
+import R2 from '../../assets/images/shutterstock_652557517.png'
 
 const NavBar = () => {
   const toggleNav = () => {
@@ -13,24 +14,22 @@ const NavBar = () => {
   return (
     <div className="nav-bar-container">
       <div className="nav-bar" id="navBar">
-        <a href="/">
+        <a href="/#" onClick={toggleNav}>
           <img
+            id='nav-bar-r2'
             className="nav-bar-logo"
-            src="https://placeholder.com/wp-content/uploads/2018/10/placeholder.com-logo3.png"
-            alt="Bowst Logo"
+            src={R2}
+            alt="R2-D2 Logo"
           />
         </a>
         <a href="/#">
-          <li>Play the Game</li>
+          <li>PLAY</li>
         </a>
         <a href="/#">
-          <li>Meet the Team</li>
+          <li>CREATORS</li>
         </a>
         <a href="/#">
-          <li>Contact Us</li>
-        </a>
-        <a href="/#" className="nav-bar-icon" onClick={toggleNav}>
-          <i aria-hidden="true" className="fas fa-bars" />
+          <li>CONTACT</li>
         </a>
       </div>
     </div>

@@ -2,17 +2,336 @@
 * {
   margin: 0;
   padding: 0;
-  font-family: 'Open sans', sans-serif;
+  font-family: 'Montserrat', sans-serif;
 }
 
 html {
   position: relative;
   min-height: 100%;
-  // background: url(https://www.desktopbackground.org/p/2013/05/09/573290_star-wars-battlefront-r2-d2-video-games-simple-backgrounds_2560x1440_h.jpg) no-repeat center center/1500px auto fixed;
   width: 100%;
 }
 
 body{
-  background-color: #f6f7fa;
+  background: rgb(200,211,212);
+  background: radial-gradient(circle, #fff 79%, rgba(240,254,255,1)100%);
   height: 100%;
+}
+
+//NavBar
+.nav-bar-container {
+  margin: 2rem auto 0 auto;
+}
+
+.nav-bar {
+  max-width: 1400px;
+  min-height: 80px;
+  margin: 0 auto;
+  padding: 0 2em;
+}
+
+.nav-bar-logo {
+  height: 40px;
+  margin: .25rem 0 0 0;
+}
+
+.nav-bar a {
+  float: left;
+  display: block;
+  outline: none;
+  border: 1px solid transparent;
+  color: #3d3c59;
+  text-align: center;
+  padding: 0rem 0;
+  text-decoration: none;
+  font-size: 1.25rem;
+  font-weight: 700;
+  list-style: none;
+  transform: translateZ(0);
+}
+
+.nav-bar li {
+  margin: .75rem 2rem;
+}
+
+.nav-bar a:hover, .nav-bar a:focus, .nav-bar a:active {
+  transition-duration: 0.15s;
+  transition-timing-function: ease-out;
+  transition-delay: 50ms;
+  color: #b5b6b6;
+  
+}
+
+.nav-bar a:focus:not(:first-child), .nav-bar a:active:not(:first-child)  {
+  border: 1px solid transparent;
+  border: 1px solid #ffd71c;
+}
+
+.nav-bar a:hover:first-child, .nav-bar a:focus:first-child, .nav-bar a:active:first-child {
+  opacity: .4;
+}
+
+// Crawler
+.crawler-container {
+  background: #000;
+  overflow: hidden;
+}
+
+.star-wars-intro {
+  width: 100%;
+  height: 100%;
+  font-family: "Droid Sans", arial, verdana, sans-serif;
+  font-weight: 700;
+  color: #ffd71c;
+  background-image: url(https://i.dlpng.com/static/png/7029942_preview.png);
+  background-size: cover;
+  overflow: hidden;
+  position: relative;
+}
+
+.star-wars-intro .main-content{
+  margin-left: auto;
+  margin-right: auto;
+  position: absolute;
+  z-index: 3;
+  width: 98%;
+  height: 50em;
+  bottom: 0;
+  font-size: 80px;
+  font-weight: bold;
+  text-align: justify;
+  overflow: hidden;
+  transform-origin: 50% 100%;
+  transform: perspective(350px) rotateX(25deg);
+}
+
+.star-wars-intro .main-content:after {
+  position: absolute;
+  content: ' ';
+  top: 0;
+  bottom: 60%;
+  background-image: linear-gradient(top, rgba(0,0,0,1) 0%, transparent 100%);
+  pointer-events: none;
+}
+
+.star-wars-intro .title-content {
+  position: absolute;
+  top: 100%;
+  animation: scroll 38s ease-in 4s forwards;
+}
+
+.star-wars-intro .title-content > .content-header {
+  text-align: center;
+}
+
+/* Main Image Styles */
+.star-wars-intro .main-logo {
+  position: absolute;
+  right: -13.5%;
+  margin: auto;
+  width: 130vw;
+  top: 0;
+  opacity: 0;
+  z-index: 1;
+  -webkit-animation: logo 5s ease-out 1.5s;
+  -moz-animation: logo 5s ease-out 1.5s;
+  -ms-animation: logo 5s ease-out 1.5s;
+  -o-animation: logo 5s ease-out 1.5s;
+  animation: logo 5s ease-out 1.5s;
+}
+
+#hideMe {
+  -moz-animation: hideDiv 3s ease-in 25s forwards;
+  -webkit-animation: hideDiv 3s ease-in 25s forwards;
+  -o-animation: hideDiv 3s ease-in 25s forwards;
+  animation: hideDiv 3s ease-in 25s forwards;
+  -webkit-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
+}
+
+@-webkit-keyframes intro {
+  0% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+@-moz-keyframes intro {
+  0% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+@-ms-keyframes intro {
+  0% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+@-o-keyframes intro {
+  0% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+@keyframes intro {
+  0% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+@-webkit-keyframes logo {
+  0% { -webkit-transform: scale(1); opacity: 1; }
+  50% { opacity: 1; }
+  100% { -webkit-transform: scale(0.1); opacity: 0; }
+}
+
+@-moz-keyframes logo {
+  0% { -moz-transform: scale(1); opacity: 1; }
+  50% { opacity: 1; }
+  100% { -moz-transform: scale(0.1); opacity: 0; }
+}
+
+@-ms-keyframes logo {
+  0% { -ms-transform: scale(1); opacity: 1; }
+  50% { opacity: 1; }
+  100% { -ms-transform: scale(0.1); opacity: 0; }
+}
+
+@-o-keyframes logo {
+  0% { -o-transform: scale(1); opacity: 1; }
+  50% { opacity: 1; }
+  100% { -o-transform: scale(0.1); opacity: 0; }
+}
+
+@keyframes logo {
+  0% { transform: scale(1); opacity: 1; }
+  50% { opacity: 1; }
+  100% { transform: scale(0.1); opacity: 0; }
+}
+
+@keyframes scroll {
+  0% { top: 100%; }
+  100% { top: -170%; }
+}
+
+@-webkit-keyframes hideDiv {
+  0% { -webkit-transform: translateY(100%); opacity: 1; }
+  50% { -webkit-transform: translateY(50%); opacity: 0; }
+  100% { -webkit-transform: translateY(0); opacity: 0; display: none; height: 0; }
+}
+
+@-moz-keyframes hideDiv {
+  0% { -moz-transform: translateY(100%); opacity: 1; }
+  50% {  -moz-transform: translateY(50%); opacity: 0; }
+  100% { -moz-transform: translateY(0); opacity: 0; display: none; height: 0; }
+}
+
+@-ms-keyframes hideDiv {
+  0% { -ms-transform: translateY(100%); opacity: 1; }
+  50% {  -ms-transform: translateY(50%); opacity: 0; }
+  100% { -ms-transform: translateY(0); opacity: 0; display: none; height: 0;}
+}
+
+@-o-keyframes hideDiv {
+  0% { -o-transform: translateY(100%); opacity: 1; }
+  50% { -o-transform: translateY(50%); opacity: 0; }
+  100% { -o-transform: translateY(0); opacity: 0; display: none; height: 0;}
+}
+
+@keyframes hideDiv {
+  0% { transform: translateY(100%); opacity: 1; }
+  50% { transform: translateY(50%); opacity: 0; }
+  100% { transform: translateY(0); opacity: 0; display: none ; height: 0;}
+}
+
+// R2Picture Top
+.header-img-container {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  background: url(https://images.macrumors.com/t/Mhjt2Rum8O-8mTcWKWVr9eiUqBM=/1600x1200/smart/article-new/2017/09/bb-9e-r2-d2-star-wars.jpg);
+  background-repeat: no-repeat;
+  background-size: 1471px auto;
+  width: 1471px;
+}
+
+.phaser-canvas {
+  display: flex;
+  height: 300px;
+  padding: 360px 600px 440px 750px ;
+  width: 1471px;
+}
+
+// Footer
+.footer {
+  margin-top:400px;
+  background-color: #0a0e20;
+  background-image: url(https://lumiere-a.akamaihd.net/v1/images/open-uri20150608-27674-lashgn_719bef9d.jpeg?region=0%2C0%2C1200%2C675);
+  background-repeat: no-repeat;
+  background-size: 100vw;
+  background-position: center;
+  height: 400px;
+}
+
+// Media Queries
+@media screen and (max-width: 820px) {
+
+
+  .nav-bar a:not(:first-child) {display: none;}
+  .nav-bar a.nav-bar-logo {
+    -webkit-transition: all 0.6s ease;
+    -moz-transition: all 0.6s ease;
+    transition: all 0.6s ease;
+  }
+
+  .nav-bar.responsive {
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+  }
+
+  .nav-bar.responsive {position: relative;}
+  .nav-bar.responsive .nav-bar-logo{
+    position: absolute;
+    left: 0rem;
+    top:  0rem;
+  }
+
+  .nav-bar.responsive a {
+    float: none;
+    display: block;
+    text-align: left;
+    padding: 0;
+    -webkit-transition: all 0.6s ease;
+    -moz-transition: all 0.6s ease;
+    transition: all 0.6s ease;
+  }
+
+  .nav-bar a:first-child {
+    padding-bottom: 2em;
+  }
+
+  .nav-bar a:not(:first-child) {
+    padding-top: .5em;
+
+  }
+
+  .nav-bar li {
+    margin: .75rem 1rem;
+  }
+  
+  .nav-bar a:focus:not(:first-child), .nav-bar a:active:not(:first-child)  {
+    border: 1px solid transparent;
+  }
+}
+
+@media screen and (max-width: 720px) {
+  .star-wars-intro .main-content {
+    font-size: 35px;
+  }
+  .star-wars-intro .title-content {
+    position: absolute;
+    top: 100%;
+    animation: scroll 100s linear 4s forwards;
+  }
 }

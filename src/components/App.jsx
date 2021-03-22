@@ -1,16 +1,21 @@
 import React from "react";
-// import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import "../assets/scss/main.scss"
 
 import NavBar from './layout/NavBar'
+import Footer from './layout/Footer'
+import Crawler from './Crawler'
+import GameShow from './GameShow'
 
-export default class App extends React.Component {
-  render() {
-    return (
-      <>
-        <NavBar />
-      </>
-    );
-  }
+const App = () => {
+  return (
+    <>
+      <Crawler />
+      <NavBar />
+      <GameShow />
+      <Footer />
+    </>
+  );
+
 }
+export default App;
