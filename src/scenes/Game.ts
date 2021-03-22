@@ -1,17 +1,20 @@
 import Phaser from 'phaser'
 
-import { offsetForDirection } from '../../utils/TileUtils'
-import { baseTweenForDirection } from '../../utils/TweenUtils'
+import * as Colors from '../consts/Color'
 
-import { Direction } from '../../consts/Direction'
-import { boxColorToTargeColor } from '../../utils/ColorUtils'
+// import { offsetForDirection } from '../../utils/TileUtils'
+// import { baseTweenForDirection } from '../../utils/TweenUtils'
+
+// import { Direction } from '../../consts/Direction'
+// import { boxColorToTargeColor } from '../../utils/ColorUtils'
 // import astromechdroid from "../../public/assets/astromechdroid.png"
 
 export default class Game extends Phaser.Scene {
     private cursors?: Phaser.Types.Input.Keyboard.CursorKeys
     private player?: Phaser.GameObjects.Sprite
-    private boxes: Phaser.GameObjects.Sprite[] = []
+    private blueBoxes: Phaser.GameObjects.Sprite[] = []
     private layer?: Phaser.Tilemaps.StaticTilemapLayer
+    private targetsCoveredByColor: { [key: number]: number } = {}
 
     constructor() {
         super('hello-world')
@@ -58,7 +61,7 @@ export default class Game extends Phaser.Scene {
         this.player = this.layer.createFromTiles(52, 0, { key: 'tiles', frame: 52 }).pop()
         this.player?.setOrigin(0)
 
-        this.boxes = this.layer.createFromTiles(8, 0, { key: 'tiles', frame: 8 }).map(box => box.setOrigin(0))
+        this.blueBoxes = this.layer.createFromTiles(8, 0, { key: 'tiles', frame: 8 }).map(box => box.setOrigin(0))
     }
 
     update() {
@@ -146,7 +149,23 @@ export default class Game extends Phaser.Scene {
 
         const box = this.getBoxAt(x, y)
         if (box) {
-            this.tweens.add(Object.assign(baseTween, { targets: box }))
+            const coveredTarget = this.hasTargetAt(box.x, box.y, Colors.TargetBlue)
+            if (coveredTarget) {
+                this.changeTargetCovetedCountForColor(Colors.TargetBlue, -1)
+            }
+
+            this.tweens.add(Object.assign(baseTween, { 
+                targets: box,
+                onComplete: () => {
+                    const coveredTarget = this.hasTargetAt(box.x, box.y, Colors.TargetBlue)
+                    if (coveredTarget) {
+                        this.changeTargetCovetedCountForColor(Colors.TargetBlue, 1)
+                    }
+
+                    console.dir(this.targetsCoveredByColor)
+                },
+            }
+            ))
         }
         {
             this.tweens.add(Object.assign(
@@ -172,8 +191,16 @@ export default class Game extends Phaser.Scene {
         }
     }
 
+    private changeTargetCovetedCountForColor(color: number, change: number) {
+        if (!(color in this.targetsCoveredByColor)) {
+            this.targetsCoveredByColor[color] = 0
+        }
+
+        this.targetsCoveredByColor[color] = change
+    }
+
     private getBoxAt(x: number, y: number) {
-        return this.boxes.find(box => {
+        return this.blueBoxes.find(box => {
             const rect = box.getBounds()
             return rect.contains(x, y)
         })
@@ -190,6 +217,19 @@ export default class Game extends Phaser.Scene {
         }
 
         return tile.index === 99
+    }
+
+    private hasTargetAt(x: number, y: number, tileIndex: number) {
+        if (!this.layer) {
+            return false
+        }
+
+        const tile = this.layer.getTileAtWorldXY(x, y)
+        if (!tile) {
+            return false
+        }
+
+        return tile.index === tileIndex
     }
 
     private createPlayerAnims() {
