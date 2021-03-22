@@ -2,6 +2,7 @@ import Phaser from 'phaser'
 
 import * as Colors from '../consts/Color'
 
+import { boxColorToTargetColor } from '../utils/ColorUtils'
 // import { offsetForDirection } from '../../utils/TileUtils'
 // import { baseTweenForDirection } from '../../utils/TweenUtils'
 
@@ -12,9 +13,9 @@ import * as Colors from '../consts/Color'
 export default class Game extends Phaser.Scene {
     private cursors?: Phaser.Types.Input.Keyboard.CursorKeys
     private player?: Phaser.GameObjects.Sprite
-    private blueBoxes: Phaser.GameObjects.Sprite[] = []
     private layer?: Phaser.Tilemaps.StaticTilemapLayer
     private targetsCoveredByColor: { [key: number]: number } = {}
+    private boxesByColor: { [key: number]: Phaser.GameObjects.Sprite[] } = {}
 
     constructor() {
         super('hello-world')
@@ -38,8 +39,8 @@ export default class Game extends Phaser.Scene {
         const level = [
             [99,  99,  99,  99,  99,  99,  99,  99,  99,  99],
             [99,   0,   0,   0,   0,   0,   0,   0,   0,  99],
-            [99,   0,   0,   0,   0,   0,   0,   0,   0,  99],
-            [99,   0,   0,  51,   8,   0,  52,   0,   0,  99],
+            [99,   6,   7,   8,   9,  10,   0,   0,   0,  99],
+            [99,  25,  38,  51,  64,  77,  52,   0,   0,  99],
             [99,   0,   0,   0,   0,   0,   0,   0,   0,  99],
             [99,   0,   0,   0,   0,   0,   0,   0,   0,  99],
             [99,   0,   0,   0,   0,   0,   0,   0,   0,  99],
@@ -61,7 +62,7 @@ export default class Game extends Phaser.Scene {
         this.player = this.layer.createFromTiles(52, 0, { key: 'tiles', frame: 52 }).pop()
         this.player?.setOrigin(0)
 
-        this.blueBoxes = this.layer.createFromTiles(8, 0, { key: 'tiles', frame: 8 }).map(box => box.setOrigin(0))
+        this.extractBoxes(this.layer)
     }
 
     update() {
@@ -136,6 +137,21 @@ export default class Game extends Phaser.Scene {
         }
     }
 
+    private extractBoxes(layer: Phaser.Tilemaps.StaticTilemapLayer) {
+        const boxColors = [
+            Colors.boxOrange,
+            Colors.boxRed,
+            Colors.boxBlue,
+            Colors.boxGreen,
+            Colors.boxGrey
+        ]
+
+        boxColors.forEach((color) => {
+            this.boxesByColor[color] = layer.createFromTiles(color, 0, { key: 'tiles', frame: color }).map(box => box.setOrigin(0))
+        })
+        console.dir(this.boxesByColor)
+    }
+
     private tweenMove(x: number, y: number, baseTween: any, onStart: () => void) {
         if (this.tweens.isTweening(this.player!)) {
             return 
@@ -147,19 +163,23 @@ export default class Game extends Phaser.Scene {
             return
         }
 
-        const box = this.getBoxAt(x, y)
-        if (box) {
-            const coveredTarget = this.hasTargetAt(box.x, box.y, Colors.TargetBlue)
+        const boxData = this.getBoxDataAt(x, y)
+        if (boxData) {
+            const box = boxData.box
+            const boxColor = boxData.color
+            const targetColor = boxColorToTargetColor(boxColor)
+
+            const coveredTarget = this.hasTargetAt(box.x, box.y, targetColor)
             if (coveredTarget) {
-                this.changeTargetCovetedCountForColor(Colors.TargetBlue, -1)
+                this.changeTargetCovetedCountForColor(targetColor, -1)
             }
 
             this.tweens.add(Object.assign(baseTween, { 
                 targets: box,
                 onComplete: () => {
-                    const coveredTarget = this.hasTargetAt(box.x, box.y, Colors.TargetBlue)
+                    const coveredTarget = this.hasTargetAt(box.x, box.y, targetColor)
                     if (coveredTarget) {
-                        this.changeTargetCovetedCountForColor(Colors.TargetBlue, 1)
+                        this.changeTargetCovetedCountForColor(targetColor, 1)
                     }
 
                     console.dir(this.targetsCoveredByColor)
@@ -199,11 +219,26 @@ export default class Game extends Phaser.Scene {
         this.targetsCoveredByColor[color] = change
     }
 
-    private getBoxAt(x: number, y: number) {
-        return this.blueBoxes.find(box => {
-            const rect = box.getBounds()
-            return rect.contains(x, y)
-        })
+    private getBoxDataAt(x: number, y: number) {
+        const keys = Object.keys(this.boxesByColor)
+        for (let i = 0; i < keys.length; i++) {
+            const color = keys[i]
+            const box = this.boxesByColor[color].find((box) => {
+                const rect = box.getBounds()
+                return rect.contains(x, y)
+            })
+
+            if (!box) {
+                continue
+            }
+
+            return { 
+                box, 
+                color: parseInt(color)
+            }
+        }
+
+        return undefined
     }
 
     private hasWallAt(x: number, y: number) {

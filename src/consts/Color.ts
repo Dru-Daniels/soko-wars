@@ -4,11 +4,11 @@ const boxBlue = 8
 const boxGreen = 9
 const boxGrey = 10
 
-const TargetOrange = 25
-const TargetRed = 38
-const TargetBlue = 51
-const TargetGreen = 64
-const TargetGrey = 77
+const targetOrange = 25
+const targetRed = 38
+const targetBlue = 51
+const targetGreen = 64
+const targetGrey = 77
 
 export {
   boxOrange,
@@ -16,10 +16,10 @@ export {
   boxBlue,
   boxGreen,
   boxGrey,
-
-  TargetOrange,
-  TargetRed,
-  TargetBlue,
-  TargetGreen,
-  TargetGrey,
+  
+  targetOrange,
+  targetRed,
+  targetBlue,
+  targetGreen,
+  targetGrey,
 }
