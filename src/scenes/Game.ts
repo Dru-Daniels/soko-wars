@@ -11,6 +11,7 @@ export default class Game extends Phaser.Scene {
     private cursors?: Phaser.Types.Input.Keyboard.CursorKeys
     private player?: Phaser.GameObjects.Sprite
     private boxes: Phaser.GameObjects.Sprite[] = []
+    private layer?: Phaser.Tilemaps.StaticTilemapLayer
 
     constructor() {
         super('hello-world')
@@ -49,15 +50,15 @@ export default class Game extends Phaser.Scene {
         })
 
         const tiles = map.addTilesetImage('tiles')
-        const layer = map.createLayer(0, tiles, 0, 0)
+        this.layer = map.createStaticLayer(0, tiles, 0, 0)
 
         // this.player = this.add.sprite(400, 300, 'r2', 5).setScale(1.5)
         this.createPlayerAnims()
         
-        this.player = layer.createFromTiles(52, 0, { key: 'tiles', frame: 52 }).pop()
+        this.player = this.layer.createFromTiles(52, 0, { key: 'tiles', frame: 52 }).pop()
         this.player?.setOrigin(0)
 
-        this.boxes = layer.createFromTiles(8, 0, { key: 'tiles', frame: 8 }).map(box => box.setOrigin(0))
+        this.boxes = this.layer.createFromTiles(8, 0, { key: 'tiles', frame: 8 }).map(box => box.setOrigin(0))
     }
 
     update() {
@@ -89,6 +90,9 @@ export default class Game extends Phaser.Scene {
                 this.player?.anims.play('right', true)
             })
         } else if (justUp) {
+            if (this.hasWallAt(this.player.x + 32, this.player.y - 32)) {
+                console.log('has wall')
+            }
             const box = this.getBoxAt(this.player.x + 32, this.player.y - 32)
             const baseTween = {
                 y: '-=64',
@@ -142,6 +146,19 @@ export default class Game extends Phaser.Scene {
             const rect = box.getBounds()
             return rect.contains(x, y)
         })
+    }
+
+    private hasWallAt(x: number, y: number) {
+        if (!this.layer) {
+            return false
+        }
+
+        const tile = this.layer.getTileAtWorldXY(x, y)
+        if (!tile) {
+            return false
+        }
+
+        return tile.index === 99
     }
 
     private createPlayerAnims() {
