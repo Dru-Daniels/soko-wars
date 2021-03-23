@@ -21,7 +21,7 @@ export default class Game extends Phaser.Scene {
     private movesCount = 0
 
     constructor() {
-        super('hello-world')
+        super('game')
     }
 
     init() {
@@ -66,7 +66,10 @@ export default class Game extends Phaser.Scene {
 
         this.extractBoxes(this.layer)
 
-        this.movesCountLabel = this.add.text(520, 50, `Moves: ${this.movesCount}`)
+        this.movesCountLabel = this.add.text(520, 50, `Moves: ${this.movesCount}`, {
+            fontFamily: 'Abel',
+            fontSize: 25
+        })
     }
 
     update() {
