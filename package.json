@@ -43,6 +43,7 @@
 		"babel-preset-es2015": "^6.24.1",
 		"babel-preset-react": "^6.24.1",
 		"css-loader": "^5.0.0",
+		"parcel-bundler": "^1.12.5",
 		"phaser": "^3.50.1",
 		"react-hot-loader": "^4.13.0",
 		"react-redux": "^7.0.2",
