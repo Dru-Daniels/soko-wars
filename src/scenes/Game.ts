@@ -56,7 +56,6 @@ export default class Game extends Phaser.Scene {
         const tiles = map.addTilesetImage('tiles')
         this.layer = map.createStaticLayer(0, tiles, 0, 0)
 
-        // this.player = this.add.sprite(400, 300, 'r2', 5).setScale(1.5)
         this.createPlayerAnims()
         
         this.player = this.layer.createFromTiles(52, 0, { key: 'tiles', frame: 52 }).pop()
