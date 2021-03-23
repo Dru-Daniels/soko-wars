@@ -42,11 +42,11 @@ export default class Game extends Phaser.Scene {
             [0, 0, 99, 99, 99, 0, 0, 0, 0, 0],
             [0, 0, 99, 64, 99, 0, 0, 0, 0, 0],
             [0, 0, 99, 0, 99, 99, 99, 99, 0, 0],
-            [99, 99, 99, 9, 0, 9, 64, 99, 0, 0],
-            [99, 64, 0, 9, 52, 99, 99, 99, 0, 0],
-            [99, 99, 99, 99, 9, 99, 0, 0, 0, 0],
-            [0, 0, 0, 99, 64, 99, 0, 0, 0, 0],
-            [0, 0, 0, 99, 99, 99, 0, 0, 0, 0]
+            [99, 99, 99, 9, 0, 10, 77, 99, 0, 0],
+            [99, 51, 0, 8, 52, 99, 99, 99, 0, 0],
+            [99, 99, 99, 99, 7, 99, 0, 0, 0, 0],
+            [0, 0, 0, 99, 38, 99, 0, 0, 0, 0],
+            [0, 0, 0, 99, 99, 99, 0, 0, 0, 0],
 
         ]
         const map = this.make.tilemap({
@@ -220,7 +220,6 @@ export default class Game extends Phaser.Scene {
                         this.changeTargetCovetedCountForColor(targetColor, 1)
                     }
 
-                    console.dir(this.allTargetsCovered())
                 },
             }
             ))
@@ -235,6 +234,12 @@ export default class Game extends Phaser.Scene {
                         this.stopPlayerAnimation()
 
                         this.updateMovesCount()
+                        const levelFinishedScene = this.allTargetsCovered()
+                        if (levelFinishedScene) {
+                            this.scene.start('level-finished', {
+                                moves: this.movesCount
+                            })
+                        }
                     },
                     onCompleteScope: this,
                     onStart

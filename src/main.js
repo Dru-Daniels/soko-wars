@@ -4,6 +4,7 @@ import ReactDOM from "react-dom"
 import App from "./components/App"
 
 import Game from './scenes/Game'
+import LevelFinishedScene from './scenes/LevelFinishedScene'
 
 const config = {
 	type: Phaser.AUTO,
@@ -16,7 +17,7 @@ const config = {
 			gravity: { y: 200 }
 		}
 	},
-	scene: [Game]
+	scene: [Game, LevelFinishedScene]
 }
 
 const game = new Phaser.Game(config);
