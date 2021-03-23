@@ -3,12 +3,12 @@ import Phaser from 'phaser'
 import * as Colors from '../consts/Color'
 
 import { boxColorToTargetColor } from '../utils/ColorUtils'
-// import { offsetForDirection } from '../../utils/TileUtils'
+import { offsetForDirection } from '../utils/TileUtil'
 // import { baseTweenForDirection } from '../../utils/TweenUtils'
 
-// import { Direction } from '../../consts/Direction'
-// import { boxColorToTargeColor } from '../../utils/ColorUtils'
-// import astromechdroid from "../../public/assets/astromechdroid.png"
+import { Direction } from '../consts/Direction'
+import { boxColorToTargeColor } from '../../utils/ColorUtils'
+
 
 export default class Game extends Phaser.Scene {
     private cursors?: Phaser.Types.Input.Keyboard.CursorKeys
@@ -33,14 +33,14 @@ export default class Game extends Phaser.Scene {
 
     create() {
         const level = [
-            [99,  99,  99,  99,  99,  99,  99,  99,  99,  99],
-            [99,   0,   0,   0,   0,   0,   0,   0,   0,  99],
-            [99,   6,   7,   8,   9,  10,   0,   0,   0,  99],
-            [99,  25,  38,  51,  64,  77,  52,   0,   0,  99],
-            [99,   0,   0,   0,   0,   0,   0,   0,   0,  99],
-            [99,   0,   0,   0,   0,   0,   0,   0,   0,  99],
-            [99,   0,   0,   0,   0,   0,   0,   0,   0,  99],
-            [99,  99,  99,  99,  99,  99,  99,  99,  99,  99]
+            [99, 99, 99, 99, 99, 99, 99, 99, 99, 99],
+            [99, 0, 0, 0, 0, 0, 0, 0, 0, 99],
+            [99, 6, 7, 8, 9, 10, 0, 0, 0, 99],
+            [99, 25, 38, 51, 64, 77, 52, 0, 0, 99],
+            [99, 0, 0, 0, 0, 0, 0, 0, 0, 99],
+            [99, 0, 0, 0, 0, 0, 0, 0, 0, 99],
+            [99, 0, 0, 0, 0, 0, 0, 0, 0, 99],
+            [99, 99, 99, 99, 99, 99, 99, 99, 99, 99]
 
         ]
         const map = this.make.tilemap({
@@ -53,7 +53,7 @@ export default class Game extends Phaser.Scene {
         this.layer = map.createStaticLayer(0, tiles, 0, 0)
 
         this.createPlayerAnims()
-        
+
         this.player = this.layer.createFromTiles(52, 0, { key: 'tiles', frame: 52 }).pop()
         this.player?.setOrigin(0)
 
@@ -74,7 +74,7 @@ export default class Game extends Phaser.Scene {
             const nextX = this.player.x - 32
             const nextY = this.player.y + 32
             const hasWall = this.hasWallAt(nextX, nextY)
-            
+
             if (hasWall) {
                 return
             }
@@ -83,14 +83,14 @@ export default class Game extends Phaser.Scene {
                 x: '-=64',
                 duration: 500,
             }
-            this.tweenMove(this.player.x - 32, this.player.y + 32, baseTween, () => {
+            this.tweenMove(Direction.Left, baseTween, () => {
                 this.player?.anims.play('left', true)
             })
         } else if (justRight) {
             const nextX = this.player.x + 96
             const nextY = this.player.y + 32
             const hasWall = this.hasWallAt(nextX, nextY)
-            
+
             if (hasWall) {
                 return
             }
@@ -99,7 +99,7 @@ export default class Game extends Phaser.Scene {
                 x: '+=64',
                 duration: 500,
             }
-            this.tweenMove(this.player.x + 96, this.player.y + 32, baseTween, () => {
+            this.tweenMove(Direction.Right, baseTween, () => {
                 this.player?.anims.play('right', true)
             })
         } else if (justUp) {
@@ -108,25 +108,25 @@ export default class Game extends Phaser.Scene {
             const hasWall = this.hasWallAt(nextX, nextY)
 
             if (hasWall) {
-                return 
+                return
             }
-            
+
             const baseTween = {
                 y: '-=64',
                 duration: 500,
             }
-            this.tweenMove(this.player.x + 32, this.player.y - 32, baseTween, () => {
+            this.tweenMove(Direction.Up, baseTween, () => {
                 this.player?.anims.play('up', true)
             })
         } else if (justDown) {
-            
-            
+
+
 
             const baseTween = {
                 y: '+=64',
                 duration: 500,
             }
-            this.tweenMove(this.player.x + 32, this.player.y + 96, baseTween, () => {
+            this.tweenMove(Direction.Down, baseTween, () => {
                 this.player?.anims.play('down', true)
             })
         }
@@ -147,19 +147,37 @@ export default class Game extends Phaser.Scene {
         console.dir(this.boxesByColor)
     }
 
-    private tweenMove(x: number, y: number, baseTween: any, onStart: () => void) {
-        if (this.tweens.isTweening(this.player!)) {
-            return 
+    private tweenMove(direction: Direction, baseTween: any, onStart: () => void) {
+        if (!this.player || this.tweens.isTweening(this.player!)) {
+            return
         }
-        
-        const hasWall = this.hasWallAt(x, y)
-            
+
+        const x = this.player.x
+        const y = this.player.y
+
+        const offset = offsetForDirection(direction)
+        const ox = x + offset.x
+        const oy = y + offset.y
+
+        const hasWall = this.hasWallAt(ox, oy)
+
         if (hasWall) {
             return
         }
 
-        const boxData = this.getBoxDataAt(x, y)
+        const boxData = this.getBoxDataAt(ox, oy)
         if (boxData) {
+            const nextOffset = offsetForDirection(direction, 2)
+            const nx = x + nextOffset.x
+            const ny = y + nextOffset.y
+            const nextBoxData = this.getBoxDataAt(nx, ny)
+            if (nextBoxData) {
+                return
+            }
+            if (this.hasWallAt(nx, ny)) {
+                return
+            }
+
             const box = boxData.box
             const boxColor = boxData.color
             const targetColor = boxColorToTargetColor(boxColor)
@@ -169,7 +187,7 @@ export default class Game extends Phaser.Scene {
                 this.changeTargetCovetedCountForColor(targetColor, -1)
             }
 
-            this.tweens.add(Object.assign(baseTween, { 
+            this.tweens.add(Object.assign(baseTween, {
                 targets: box,
                 onComplete: () => {
                     const coveredTarget = this.hasTargetAt(box.x, box.y, targetColor)
@@ -227,8 +245,8 @@ export default class Game extends Phaser.Scene {
                 continue
             }
 
-            return { 
-                box, 
+            return {
+                box,
                 color: parseInt(color)
             }
         }
