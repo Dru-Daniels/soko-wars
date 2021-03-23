@@ -13,11 +13,18 @@ export default class Game extends Phaser.Scene {
     private cursors?: Phaser.Types.Input.Keyboard.CursorKeys
     private player?: Phaser.GameObjects.Sprite
     private layer?: Phaser.Tilemaps.StaticTilemapLayer
+    private movesCountLabel?: Phaser.GameObjects.Text
     private targetsCoveredByColor: { [key: number]: number } = {}
     private boxesByColor: { [key: number]: Phaser.GameObjects.Sprite[] } = {}
 
+    private movesCount = 0
+
     constructor() {
         super('hello-world')
+    }
+
+    init() {
+        this.movesCount = 0
     }
 
     preload() {
@@ -32,14 +39,14 @@ export default class Game extends Phaser.Scene {
 
     create() {
         const level = [
-            [99, 99, 99, 99, 99, 99, 99, 99, 99, 99],
-            [99, 0, 0, 0, 0, 0, 0, 0, 0, 99],
-            [99, 6, 7, 8, 9, 10, 0, 0, 0, 99],
-            [99, 25, 38, 51, 64, 77, 52, 0, 0, 99],
-            [99, 0, 0, 0, 0, 0, 0, 0, 0, 99],
-            [99, 0, 0, 0, 0, 0, 0, 0, 0, 99],
-            [99, 0, 0, 0, 0, 0, 0, 0, 0, 99],
-            [99, 99, 99, 99, 99, 99, 99, 99, 99, 99]
+            [0, 0, 99, 99, 99, 0, 0, 0, 0, 0],
+            [0, 0, 99, 64, 99, 0, 0, 0, 0, 0],
+            [0, 0, 99, 0, 99, 99, 99, 99, 0, 0],
+            [99, 99, 99, 9, 0, 9, 64, 99, 0, 0],
+            [99, 64, 0, 9, 52, 99, 99, 99, 0, 0],
+            [99, 99, 99, 99, 9, 99, 0, 0, 0, 0],
+            [0, 0, 0, 99, 64, 99, 0, 0, 0, 0],
+            [0, 0, 0, 99, 99, 99, 0, 0, 0, 0]
 
         ]
         const map = this.make.tilemap({
@@ -57,6 +64,8 @@ export default class Game extends Phaser.Scene {
         this.player?.setOrigin(0)
 
         this.extractBoxes(this.layer)
+
+        this.movesCountLabel = this.add.text(520, 50, `Moves: ${this.movesCount}`)
     }
 
     update() {
@@ -221,12 +230,24 @@ export default class Game extends Phaser.Scene {
                 baseTween,
                 {
                     targets: this.player,
-                    onComplete: this.stopPlayerAnimation,
+                    onComplete: () => {
+                        this.movesCount++
+                        this.stopPlayerAnimation()
+
+                        this.updateMovesCount()
+                    },
                     onCompleteScope: this,
                     onStart
                 })
             )
         }
+    }
+
+    private updateMovesCount() {
+        if (!this.movesCountLabel) {
+            return
+        }
+        this.movesCountLabel.text = `Moves ${this.movesCount}`
     }
 
     private stopPlayerAnimation() {
