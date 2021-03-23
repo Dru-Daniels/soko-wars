@@ -2,12 +2,11 @@ import Phaser from 'phaser'
 
 import * as Colors from '../consts/Color'
 
-import { boxColorToTargetColor } from '../utils/ColorUtils'
+import { boxColorToTargetColor, targetColorToBoxColor } from '../utils/ColorUtils'
 import { offsetForDirection } from '../utils/TileUtil'
 // import { baseTweenForDirection } from '../../utils/TweenUtils'
 
 import { Direction } from '../consts/Direction'
-import { boxColorToTargeColor } from '../../utils/ColorUtils'
 
 
 export default class Game extends Phaser.Scene {
@@ -119,9 +118,6 @@ export default class Game extends Phaser.Scene {
                 this.player?.anims.play('up', true)
             })
         } else if (justDown) {
-
-
-
             const baseTween = {
                 y: '+=64',
                 duration: 500,
@@ -130,6 +126,23 @@ export default class Game extends Phaser.Scene {
                 this.player?.anims.play('down', true)
             })
         }
+    }
+
+    private allTargetsCovered() {
+        const targetColors = Object.keys(this.targetsCoveredByColor)
+        for (let i = 0; i < targetColors.length; i++) {
+            const targetColor = parseInt(targetColors[i])
+            const boxColor = targetColorToBoxColor(targetColor)
+            if (!(boxColor in this.boxesByColor)) {
+                continue
+            }
+            const numBoxes = this.boxesByColor[boxColor].length
+            const numCovered = this.targetsCoveredByColor[targetColor]
+            if (numCovered < numBoxes) {
+                return false
+            }
+        }
+        return true
     }
 
     private extractBoxes(layer: Phaser.Tilemaps.StaticTilemapLayer) {
@@ -143,6 +156,9 @@ export default class Game extends Phaser.Scene {
 
         boxColors.forEach((color) => {
             this.boxesByColor[color] = layer.createFromTiles(color, 0, { key: 'tiles', frame: color }).map(box => box.setOrigin(0))
+
+            const targetColor = boxColorToTargetColor(color)
+            this.targetsCoveredByColor[targetColor] = 0
         })
         console.dir(this.boxesByColor)
     }
@@ -195,7 +211,7 @@ export default class Game extends Phaser.Scene {
                         this.changeTargetCovetedCountForColor(targetColor, 1)
                     }
 
-                    console.dir(this.targetsCoveredByColor)
+                    console.dir(this.allTargetsCovered())
                 },
             }
             ))
