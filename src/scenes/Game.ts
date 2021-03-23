@@ -22,10 +22,6 @@ export default class Game extends Phaser.Scene {
     }
 
     preload() {
-        // this.load.spritesheet('r2', astromechdroid, {
-        //     frameWidth: 26,
-        //     startFrame: 0
-        // })
 
         this.load.spritesheet('tiles', 'assets/sokoban_tilesheet.png', {
             frameWidth: 64,
