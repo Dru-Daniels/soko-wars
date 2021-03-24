@@ -20,9 +20,26 @@ export default class LevelFinishedScene extends Phaser.Scene {
       .setOrigin(0.5)
 
     this.add.text(width * 0.5, height * 0.5, `Moves: ${data.moves}`, {
-      fontFamily: 'Montserrat'
+      fontFamily: 'Poppins'
     })
       .setOrigin(0.5)
 
+    const retryButtony = defaultButton('Retry') as HTMLElement
+    const retry = this.add.dom(width * 0.5, height * 0.6, retryButton)
+      .addListener('click').once('click', () => {
+        this.sound.play('click')
+        this.scene.start('game', { level: data.currentLevel })
+      })
+
+    if (data.currentLevel + 1 > 2) {
+      return
+    }
+
+    const nextLevelButton = primaryButton('Next Level') as HTMLElement
+    this.add.dom(width * 0.5, retry.y + retry.height * 1.2, nextLevelButton)
+      .addListener('click').once('click', () => {
+        this.sound.play('click')
+        this.scene.start('game', { level: data.currentLevel + 1 })
+      })
   }
 }

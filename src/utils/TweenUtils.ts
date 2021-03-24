@@ -1,36 +1,37 @@
 import { Direction } from "../consts/Direction"
 
 interface IBaseTween {
-  x?: number | string
-  y?: number | string
-  duration?: number
+	x?: number | string
+	y?: number | string
+	duration?: number
 }
 
 const baseTweenForDirection = (direction: Direction) => {
-  const baseTween: IBaseTween = {
-    duration: 500
-  }
-  switch (direction) {
-    case Direction.Down:
-      baseTween.y = '+=64'
-      break
+	const baseTween: IBaseTween = {
+		duration: 500
+	}
 
-    case Direction.Up:
-      baseTween.y = '-=64'
-      break
+	switch (direction) {
+		case Direction.Down:
+			baseTween.y = '+=64'
+			break
 
-    case Direction.Left:
-      baseTween.x = '-=64'
-      break
+		case Direction.Up:
+			baseTween.y = '-=64'
+			break
 
-    case Direction.Right:
-      baseTween.x = '+=64'
-      break
-    }
+		case Direction.Left:
+			baseTween.x = '-=64'
+			break
 
-    return baseTween
-  }
+		case Direction.Right:
+			baseTween.x = '+=64'
+			break
+	}
 
-  export {
-    baseTweenForDirection
-  }
+	return baseTween
+}
+
+export {
+	baseTweenForDirection
+}
