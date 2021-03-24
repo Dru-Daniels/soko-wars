@@ -5,7 +5,6 @@ import * as Colors from '../consts/Color'
 import { boxColorToTargetColor, targetColorToBoxColor } from '../utils/ColorUtils'
 import { offsetForDirection } from '../utils/TileUtil'
 import { baseTweenForDirection } from "../utils/TweenUtils"
-// import { baseTweenForDirection } from '../../utils/TweenUtils'
 
 import { Direction } from '../consts/Direction'
 

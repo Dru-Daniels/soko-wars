@@ -11,7 +11,7 @@ const App = () => {
 
   return (
     <>
-      <Crawler />
+      {/* <Crawler /> */}
       <NavBar />
       <MainContainer />
       <Footer />
