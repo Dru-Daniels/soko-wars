@@ -24,11 +24,5 @@ export default class LevelFinishedScene extends Phaser.Scene {
       fontSize: 30
     })
       .setOrigin(0.5)
-
-      // const retryButton = primaryButton('Retry') as HTMLElement
-      //   this.add.dom(width * 0.5, height * 0.6, retryButton)
-      //     .addListener('click').once('click', () => {
-      //       this.scene.start('game')
-      //     })
   }
 }
