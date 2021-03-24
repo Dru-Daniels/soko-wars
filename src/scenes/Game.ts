@@ -4,6 +4,7 @@ import * as Colors from '../consts/Color'
 
 import { boxColorToTargetColor, targetColorToBoxColor } from '../utils/ColorUtils'
 import { offsetForDirection } from '../utils/TileUtil'
+import { baseTweenForDirection } from "../utils/TweenUtils"
 // import { baseTweenForDirection } from '../../utils/TweenUtils'
 
 import { Direction } from '../consts/Direction'
@@ -41,14 +42,14 @@ export default class Game extends Phaser.Scene {
         this.add.image(320, 257, 'background');
 
         const level = [
-            [0, 0, 99, 99, 99, 0, 0, 0, 0, 0],
-            [0, 0, 99, 64, 99, 0, 0, 0, 0, 0],
-            [0, 0, 99, 0, 99, 99, 99, 99, 0, 0],
-            [99, 99, 99, 9, 0, 10, 77, 99, 0, 0],
-            [99, 51, 0, 8, 52, 99, 99, 99, 0, 0],
-            [99, 99, 99, 99, 7, 99, 0, 0, 0, 0],
-            [0, 0, 0, 99, 38, 99, 0, 0, 0, 0],
-            [0, 0, 0, 99, 99, 99, 0, 0, 0, 0],
+            [ 0,  0, 99, 99, 99,  0,  0,  0,  0,  0],
+            [ 0,  0, 99, 64, 99,  0,  0,  0,  0,  0],
+            [ 0,  0, 99,  0, 99, 99, 99, 99,  0,  0],
+            [99, 99, 99,  9,  0, 10, 77, 99,  0,  0],
+            [99, 51,  0,  8, 52, 99, 99, 99,  0,  0],
+            [99, 99, 99, 99,  7, 99,  0,  0,  0,  0],
+            [ 0,  0,  0, 99, 38, 99,  0,  0,  0,  0],
+            [ 0,  0,  0, 99, 99, 99,  0,  0,  0,  0],
 
         ]
         const map = this.make.tilemap({
@@ -81,59 +82,22 @@ export default class Game extends Phaser.Scene {
         const justDown = Phaser.Input.Keyboard.JustDown(this.cursors.down!)
 
         if (justLeft) {
-            const nextX = this.player.x - 32
-            const nextY = this.player.y + 32
-            const hasWall = this.hasWallAt(nextX, nextY)
-
-            if (hasWall) {
-                return
-            }
-
-            const baseTween = {
-                x: '-=64',
-                duration: 500,
-            }
-            this.tweenMove(Direction.Left, baseTween, () => {
+            this.tweenMove(Direction.Left, () => {
                 this.player?.anims.play('left', true)
             })
+
         } else if (justRight) {
-            const nextX = this.player.x + 96
-            const nextY = this.player.y + 32
-            const hasWall = this.hasWallAt(nextX, nextY)
-
-            if (hasWall) {
-                return
-            }
-
-            const baseTween = {
-                x: '+=64',
-                duration: 500,
-            }
-            this.tweenMove(Direction.Right, baseTween, () => {
+            this.tweenMove(Direction.Right, () => {
                 this.player?.anims.play('right', true)
             })
+
         } else if (justUp) {
-            const nextX = this.player.x + 32
-            const nextY = this.player.y - 32
-            const hasWall = this.hasWallAt(nextX, nextY)
-
-            if (hasWall) {
-                return
-            }
-
-            const baseTween = {
-                y: '-=64',
-                duration: 500,
-            }
-            this.tweenMove(Direction.Up, baseTween, () => {
+            this.tweenMove(Direction.Up, () => {
                 this.player?.anims.play('up', true)
             })
+
         } else if (justDown) {
-            const baseTween = {
-                y: '+=64',
-                duration: 500,
-            }
-            this.tweenMove(Direction.Down, baseTween, () => {
+            this.tweenMove(Direction.Down, () => {
                 this.player?.anims.play('down', true)
             })
         }
@@ -174,7 +138,7 @@ export default class Game extends Phaser.Scene {
         console.dir(this.boxesByColor)
     }
 
-    private tweenMove(direction: Direction, baseTween: any, onStart: () => void) {
+    private tweenMove(direction: Direction, onStart: () => void) {
         if (!this.player || this.tweens.isTweening(this.player!)) {
             return
         }
@@ -191,6 +155,9 @@ export default class Game extends Phaser.Scene {
         if (hasWall) {
             return
         }
+
+        const baseTween = baseTweenForDirection(direction)
+
 
         const boxData = this.getBoxDataAt(ox, oy)
         if (boxData) {
@@ -213,7 +180,7 @@ export default class Game extends Phaser.Scene {
             if (coveredTarget) {
                 this.changeTargetCovetedCountForColor(targetColor, -1)
             }
-
+            
             this.tweens.add(Object.assign(baseTween, {
                 targets: box,
                 onComplete: () => {
@@ -231,22 +198,24 @@ export default class Game extends Phaser.Scene {
                 baseTween,
                 {
                     targets: this.player,
-                    onComplete: () => {
-                        this.movesCount++
-                        this.stopPlayerAnimation()
-
-                        this.updateMovesCount()
-                        const levelFinishedScene = this.allTargetsCovered()
-                        if (levelFinishedScene) {
-                            this.scene.start('level-finished', {
-                                moves: this.movesCount
-                            })
-                        }
-                    },
+                    onComplete: this.handlePlayerStopped,
                     onCompleteScope: this,
                     onStart
                 })
             )
+        }
+    }
+
+    private handlePlayerStopped() {
+        this.movesCount++
+        this.stopPlayerAnimation()
+
+        this.updateMovesCount()
+        const levelFinishedScene = this.allTargetsCovered()
+        if (levelFinishedScene) {
+            this.scene.start('level-finished', {
+                moves: this.movesCount
+            })
         }
     }
 
