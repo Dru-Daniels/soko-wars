@@ -9,9 +9,7 @@ import { baseTweenForDirection } from "../utils/TweenUtils"
 
 import { Direction } from '../consts/Direction'
 
-import level1 from '../levels/level1'
-import level2 from '../levels/level2'
-import level3 from '../levels/level3'
+import { sharedInstance as levels } from '../levels/levelService'
 
 
 export default class Game extends Phaser.Scene {
@@ -25,11 +23,7 @@ export default class Game extends Phaser.Scene {
     private movesCount = 0
     private currentLevel = 1
 
-    private levels = [
-        level1,
-        level2,
-        level3
-    ]
+    
 
     constructor() {
         super('game')
@@ -51,7 +45,7 @@ export default class Game extends Phaser.Scene {
 
     create(d: { level: number }) {
         const data = Object.assign({ level: 1 }, d)
-        const level = this.levels[data.level - 1]
+        const level = levels.getLevel(data.level)
 
         this.currentLevel = data.level
 
