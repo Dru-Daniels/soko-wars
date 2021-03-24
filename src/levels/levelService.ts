@@ -12,6 +12,10 @@ class LevelService {
   getLevel(level: number) {
     return this.levels[level - 1]
   }
+
+  get levelsCount() {
+    return this.levels.length
+  }
 }
 
 const sharedInstance = new LevelService()

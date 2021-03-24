@@ -1,7 +1,8 @@
 import Phaser from 'phaser'
 // import { primaryButton } from '../ui/Button'
+// import { primaryButton, defaultButton } from '../ui/Button'
 
-import { primaryButton, defaultButton } from '../ui/Button'
+import { sharedInstance as levels } from '../levels/levelService'
 
 export default class LevelFinishedScene extends Phaser.Scene {
   constructor() {
@@ -32,9 +33,17 @@ export default class LevelFinishedScene extends Phaser.Scene {
     //   this.scene.start('game', { level: data.currentLevel })
     // })
 
+    //level count logic - we want this here so the next level button doesn't render on the last level
+    // if (data.currentLevel + 1 > levels.levelsCount) {
+    //   return
+    // }
+
     //next level button functionality here
     // this.addListener('click').once('click', () => {
     //   this.scene.start('game', { level: data.currentLevel + 1 })
     // })
+
+    
+    
   }
 }
