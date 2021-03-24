@@ -1,7 +1,7 @@
 import Phaser from 'phaser'
-import { primaryButton } from '../ui/Button'
+// import { primaryButton } from '../ui/Button'
 
-// import { primaryButton, defaultButton } from '../ui/Button'
+import { primaryButton, defaultButton } from '../ui/Button'
 
 export default class LevelFinishedScene extends Phaser.Scene {
   constructor() {
@@ -25,10 +25,10 @@ export default class LevelFinishedScene extends Phaser.Scene {
     })
       .setOrigin(0.5)
 
-      const retryButton = primaryButton('Retry') as HTMLElement
-        this.add.dom(width * 0.5, height * 0.6, retryButton)
-          .addListener('click').once('click', () => {
-            this.scene.start('game')
-          })
+      // const retryButton = primaryButton('Retry') as HTMLElement
+      //   this.add.dom(width * 0.5, height * 0.6, retryButton)
+      //     .addListener('click').once('click', () => {
+      //       this.scene.start('game')
+      //     })
   }
 }
