@@ -9,7 +9,6 @@ import { baseTweenForDirection } from "../utils/TweenUtils"
 
 import { Direction } from '../consts/Direction'
 
-
 export default class Game extends Phaser.Scene {
     private cursors?: Phaser.Types.Input.Keyboard.CursorKeys
     private player?: Phaser.GameObjects.Sprite
@@ -29,6 +28,7 @@ export default class Game extends Phaser.Scene {
     }
 
     preload() {
+        this.load.image('background', 'assets/backgroundTest.png')
 
         this.load.spritesheet('tiles', 'assets/sokoban_tilesheet.png', {
             frameWidth: 64,
@@ -39,15 +39,17 @@ export default class Game extends Phaser.Scene {
     }
 
     create() {
+        this.add.image(320, 257, 'background');
+
         const level = [
-            [ 0,  0, 99, 99, 99,  0,  0,  0,  0,  0],
-            [ 0,  0, 99, 64, 99,  0,  0,  0,  0,  0],
-            [ 0,  0, 99,  0, 99, 99, 99, 99,  0,  0],
-            [99, 99, 99,  9,  0, 10, 77, 99,  0,  0],
-            [99, 51,  0,  8, 52, 99, 99, 99,  0,  0],
-            [99, 99, 99, 99,  7, 99,  0,  0,  0,  0],
-            [ 0,  0,  0, 99, 38, 99,  0,  0,  0,  0],
-            [ 0,  0,  0, 99, 99, 99,  0,  0,  0,  0],
+            [0, 0, 99, 99, 99, 0, 0, 0, 0, 0],
+            [0, 0, 99, 64, 99, 0, 0, 0, 0, 0],
+            [0, 0, 99, 0, 99, 99, 99, 99, 0, 0],
+            [99, 99, 99, 9, 0, 10, 77, 99, 0, 0],
+            [99, 51, 0, 8, 52, 99, 99, 99, 0, 0],
+            [99, 99, 99, 99, 7, 99, 0, 0, 0, 0],
+            [0, 0, 0, 99, 38, 99, 0, 0, 0, 0],
+            [0, 0, 0, 99, 99, 99, 0, 0, 0, 0],
 
         ]
         const map = this.make.tilemap({
@@ -181,7 +183,7 @@ export default class Game extends Phaser.Scene {
             if (coveredTarget) {
                 this.changeTargetCovetedCountForColor(targetColor, -1)
             }
-            
+
             this.tweens.add(Object.assign(baseTween, {
                 targets: box,
                 onComplete: () => {
@@ -297,7 +299,7 @@ export default class Game extends Phaser.Scene {
     private createPlayerAnims() {
         this.anims.create({
             key: 'idle-left',
-            frames: [{ key: 'tiles', frame: 81 }],
+            frames: [{ key: 'tiles', frame: 66 }],
         })
 
         this.anims.create({
@@ -307,7 +309,7 @@ export default class Game extends Phaser.Scene {
 
         this.anims.create({
             key: 'idle-up',
-            frames: [{ key: 'tiles', frame: 55 }],
+            frames: [{ key: 'tiles', frame: 53 }],
         })
 
         this.anims.create({
@@ -317,27 +319,27 @@ export default class Game extends Phaser.Scene {
 
         this.anims.create({
             key: 'left',
-            frames: this.anims.generateFrameNames('tiles', { start: 81, end: 83 }),
-            frameRate: 5,
+            frames: this.anims.generateFrameNames('tiles', { start: 65, end: 68 }),
+            frameRate: 15,
             repeat: -1
         })
 
         this.anims.create({
             key: 'right',
-            frames: this.anims.generateFrameNames('tiles', { start: 78, end: 80 }),
-            frameRate: 5,
+            frames: this.anims.generateFrameNames('tiles', { start: 78, end: 81 }),
+            frameRate: 15,
             repeat: -1
         })
         this.anims.create({
             key: 'up',
-            frames: this.anims.generateFrameNames('tiles', { start: 55, end: 57 }),
-            frameRate: 5,
+            frames: this.anims.generateFrameNames('tiles', { start: 91, end: 94 }),
+            frameRate: 10,
             repeat: -1
         })
         this.anims.create({
             key: 'down',
-            frames: this.anims.generateFrameNames('tiles', { start: 52, end: 54 }),
-            frameRate: 5,
+            frames: this.anims.generateFrameNames('tiles', { start: 52, end: 55 }),
+            frameRate: 10,
             repeat: -1
         })
     }
