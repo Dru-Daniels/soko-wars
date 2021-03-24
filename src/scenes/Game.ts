@@ -9,6 +9,9 @@ import { baseTweenForDirection } from "../utils/TweenUtils"
 
 import { Direction } from '../consts/Direction'
 
+import level1 from '../levels/level1'
+import level2 from '../levels/level2'
+
 
 export default class Game extends Phaser.Scene {
     private cursors?: Phaser.Types.Input.Keyboard.CursorKeys
@@ -19,6 +22,11 @@ export default class Game extends Phaser.Scene {
     private boxesByColor: { [key: number]: Phaser.GameObjects.Sprite[] } = {}
 
     private movesCount = 0
+
+    private levels = [
+        level1,
+        level2
+    ]
 
     constructor() {
         super('game')
@@ -38,18 +46,10 @@ export default class Game extends Phaser.Scene {
         this.cursors = this.input.keyboard.createCursorKeys()
     }
 
-    create() {
-        const level = [
-            [ 0,  0, 99, 99, 99,  0,  0,  0,  0,  0],
-            [ 0,  0, 99, 64, 99,  0,  0,  0,  0,  0],
-            [ 0,  0, 99,  0, 99, 99, 99, 99,  0,  0],
-            [99, 99, 99,  9,  0, 10, 77, 99,  0,  0],
-            [99, 51,  0,  8, 52, 99, 99, 99,  0,  0],
-            [99, 99, 99, 99,  7, 99,  0,  0,  0,  0],
-            [ 0,  0,  0, 99, 38, 99,  0,  0,  0,  0],
-            [ 0,  0,  0, 99, 99, 99,  0,  0,  0,  0],
+    create(d: { level: number }) {
+        const data = Object.assign({ level: 1 }, d)
+        const level = this.levels[data.level - 1]
 
-        ]
         const map = this.make.tilemap({
             data: level,
             tileWidth: 64,
