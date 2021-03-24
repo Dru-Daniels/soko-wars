@@ -11,6 +11,7 @@ import { Direction } from '../consts/Direction'
 
 import level1 from '../levels/level1'
 import level2 from '../levels/level2'
+import level3 from '../levels/level3'
 
 
 export default class Game extends Phaser.Scene {
@@ -26,7 +27,8 @@ export default class Game extends Phaser.Scene {
 
     private levels = [
         level1,
-        level2
+        level2,
+        level3
     ]
 
     constructor() {
