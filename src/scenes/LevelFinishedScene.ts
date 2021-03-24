@@ -18,7 +18,6 @@ export default class LevelFinishedScene extends Phaser.Scene {
 
     const data = Object.assign({ moves: 0, currentLevel: 1 }, d)
 
-  // create(data: { moves: number } = { moves: 0 }) {
     const width = this.scale.width
     const height = this.scale.height
 
