@@ -1,8 +1,10 @@
 import Phaser from 'phaser'
+
 import React from "react";
 import ReactDOM from "react-dom"
 import App from "./components/App"
 
+import Preloader from "./scenes/Preloader"
 import Game from './scenes/Game'
 import LevelFinishedScene from './scenes/LevelFinishedScene'
 
@@ -17,7 +19,7 @@ const config = {
 			gravity: { y: 200 }
 		}
 	},
-	scene: [Game, LevelFinishedScene]
+	scene: [Preloader, Game, LevelFinishedScene]
 }
 
 const game = new Phaser.Game(config);

@@ -1,11 +1,15 @@
-
 import Phaser from 'phaser'
-
-// import { primaryButton, defaultButton } from '../ui/Button'
+import retryButton from '../../public/assets/retry.png'
+import nextLevelButton from '../../public/assets/next-level.png'
 
 export default class LevelFinishedScene extends Phaser.Scene {
   constructor() {
     super('level-finished')
+  }
+
+  preload() {
+    this.load.image('next-level-button', nextLevelButton)
+    this.load.image('retry-button', retryButton)
   }
 
   create(data: { moves: number } = { moves: 0 }) {
@@ -13,33 +17,28 @@ export default class LevelFinishedScene extends Phaser.Scene {
     const height = this.scale.height
 
     this.add.text(width * 0.5, height * 0.4, 'Level Complete!', {
-      fontFamily: 'Montserrat',
+      fontFamily: 'Staatliches',
       color: '#d4fa00',
       fontSize: 48
     })
       .setOrigin(0.5)
 
     this.add.text(width * 0.5, height * 0.5, `Moves: ${data.moves}`, {
-      fontFamily: 'Poppins'
+      fontFamily: 'Staatliches',
+      fontSize: 30
     })
       .setOrigin(0.5)
 
-    const retryButtony = defaultButton('Retry') as HTMLElement
-    const retry = this.add.dom(width * 0.5, height * 0.6, retryButton)
-      .addListener('click').once('click', () => {
-        this.sound.play('click')
-        this.scene.start('game', { level: data.currentLevel })
-      })
+    this.add.image(470, 400, 'next-level-button')
+    .setInteractive()
+    .on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
+      console.log("pressed Wooo")
+  })
 
-    if (data.currentLevel + 1 > 2) {
-      return
-    }
-
-    const nextLevelButton = primaryButton('Next Level') as HTMLElement
-    this.add.dom(width * 0.5, retry.y + retry.height * 1.2, nextLevelButton)
-      .addListener('click').once('click', () => {
-        this.sound.play('click')
-        this.scene.start('game', { level: data.currentLevel + 1 })
-      })
+  this.add.image(170, 400, 'retry-button')
+    .setInteractive()
+    .on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
+      this.scene.start('game', { level: 1 })
+    })
   }
 }
