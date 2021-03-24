@@ -22,6 +22,7 @@ export default class Game extends Phaser.Scene {
     private boxesByColor: { [key: number]: Phaser.GameObjects.Sprite[] } = {}
 
     private movesCount = 0
+    private currentLevel = 1
 
     private levels = [
         level1,
@@ -49,6 +50,8 @@ export default class Game extends Phaser.Scene {
     create(d: { level: number }) {
         const data = Object.assign({ level: 1 }, d)
         const level = this.levels[data.level - 1]
+
+        this.currentLevel = data.level
 
         const map = this.make.tilemap({
             data: level,
@@ -215,7 +218,8 @@ export default class Game extends Phaser.Scene {
         const levelFinishedScene = this.allTargetsCovered()
         if (levelFinishedScene) {
             this.scene.start('level-finished', {
-                moves: this.movesCount
+                moves: this.movesCount,
+                currentLevel: this.currentLevel
             })
         }
     }

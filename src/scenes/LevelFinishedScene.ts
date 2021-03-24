@@ -8,7 +8,9 @@ export default class LevelFinishedScene extends Phaser.Scene {
     super('level-finished')
   }
 
-  create(data: { moves: number } = { moves: 0 }) {
+  create(d: { moves: number, currentLevel: number }) {
+
+    const data = Object.assign({ moves: 0, currentLevel: 1 }, d)
     const width = this.scale.width
     const height = this.scale.height
 
@@ -24,5 +26,15 @@ export default class LevelFinishedScene extends Phaser.Scene {
       fontSize: 30
     })
       .setOrigin(0.5)
+
+    //retry button functionality here 
+    // this.addListener('click').once('click', () => {
+    //   this.scene.start('game', { level: data.currentLevel })
+    // })
+
+    //next level button functionality here
+    // this.addListener('click').once('click', () => {
+    //   this.scene.start('game', { level: data.currentLevel + 1 })
+    // })
   }
 }
