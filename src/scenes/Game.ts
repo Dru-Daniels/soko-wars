@@ -34,6 +34,7 @@ export default class Game extends Phaser.Scene {
     }
 
     preload() {
+        this.load.image('background', 'assets/backgroundTest.png')
 
         this.load.spritesheet('tiles', 'assets/sokoban_tilesheet.png', {
             frameWidth: 64,
@@ -297,7 +298,7 @@ export default class Game extends Phaser.Scene {
     private createPlayerAnims() {
         this.anims.create({
             key: 'idle-left',
-            frames: [{ key: 'tiles', frame: 81 }],
+            frames: [{ key: 'tiles', frame: 66 }],
         })
 
         this.anims.create({
@@ -307,7 +308,7 @@ export default class Game extends Phaser.Scene {
 
         this.anims.create({
             key: 'idle-up',
-            frames: [{ key: 'tiles', frame: 55 }],
+            frames: [{ key: 'tiles', frame: 53 }],
         })
 
         this.anims.create({
@@ -317,27 +318,27 @@ export default class Game extends Phaser.Scene {
 
         this.anims.create({
             key: 'left',
-            frames: this.anims.generateFrameNames('tiles', { start: 81, end: 83 }),
-            frameRate: 5,
+            frames: this.anims.generateFrameNames('tiles', { start: 65, end: 68 }),
+            frameRate: 15,
             repeat: -1
         })
 
         this.anims.create({
             key: 'right',
-            frames: this.anims.generateFrameNames('tiles', { start: 78, end: 80 }),
-            frameRate: 5,
+            frames: this.anims.generateFrameNames('tiles', { start: 78, end: 81 }),
+            frameRate: 15,
             repeat: -1
         })
         this.anims.create({
             key: 'up',
-            frames: this.anims.generateFrameNames('tiles', { start: 55, end: 57 }),
-            frameRate: 5,
+            frames: this.anims.generateFrameNames('tiles', { start: 91, end: 94 }),
+            frameRate: 10,
             repeat: -1
         })
         this.anims.create({
             key: 'down',
-            frames: this.anims.generateFrameNames('tiles', { start: 52, end: 54 }),
-            frameRate: 5,
+            frames: this.anims.generateFrameNames('tiles', { start: 52, end: 55 }),
+            frameRate: 10,
             repeat: -1
         })
     }
