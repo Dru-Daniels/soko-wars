@@ -5,7 +5,7 @@ const boxColorToTargetColor = (boxColor: number) => {
     default:
     case Color.boxOrange:
       return Color.targetOrange
-      
+
     case Color.boxRed:
       return Color.targetRed
 
@@ -20,6 +20,27 @@ const boxColorToTargetColor = (boxColor: number) => {
   }
 }
 
+const targetColorToBoxColor = (targetColor: number) => {
+  switch (targetColor) {
+    default:
+    case Color.targetOrange:
+      return Color.boxOrange
+
+    case Color.targetRed:
+      return Color.boxRed
+
+    case Color.targetBlue:
+      return Color.boxBlue
+
+    case Color.targetGreen:
+      return Color.boxGreen
+
+    case Color.targetGrey:
+      return Color.boxGrey
+  }
+}
+
 export {
-  boxColorToTargetColor
+  boxColorToTargetColor,
+  targetColorToBoxColor
 }
