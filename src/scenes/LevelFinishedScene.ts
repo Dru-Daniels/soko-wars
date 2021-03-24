@@ -1,11 +1,15 @@
 import Phaser from 'phaser'
-// import { primaryButton } from '../ui/Button'
-
-import { primaryButton, defaultButton } from '../ui/Button'
+import retryButton from '../../public/assets/retry.png'
+import nextLevelButton from '../../public/assets/next-level.png'
 
 export default class LevelFinishedScene extends Phaser.Scene {
   constructor() {
     super('level-finished')
+  }
+
+  preload() {
+    this.load.image('next-level-button', nextLevelButton)
+    this.load.image('retry-button', retryButton)
   }
 
   create(data: { moves: number } = { moves: 0 }) {
@@ -24,5 +28,17 @@ export default class LevelFinishedScene extends Phaser.Scene {
       fontSize: 30
     })
       .setOrigin(0.5)
+
+    this.add.image(470, 400, 'next-level-button')
+    .setInteractive()
+    .on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
+      console.log("pressed Wooo")
+  })
+
+  this.add.image(170, 400, 'retry-button')
+    .setInteractive()
+    .on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
+      this.scene.start('game', { level: 1 })
+    })
   }
 }
