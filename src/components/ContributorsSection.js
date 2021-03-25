@@ -4,10 +4,10 @@ import ContributorTile from "./ContributorTile"
 
 const ContributorsSection = () => {
   return (
-    <section className="contributors-container">
+    <section className="contributors-container" id='contributors'>
       <h1 className="header-img"><img
         src="https://fontmeme.com/permalink/210322/d397da41137c989437cf6adce0f6eec6.png"
-        alt="Play Stoko Wars"
+        alt="Meet the Team"
       /></h1>
       <h4 className="contributor-title-sub">
         Something Interesting and Clever About Us :)
