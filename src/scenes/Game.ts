@@ -154,6 +154,7 @@ export default class Game extends Phaser.Scene {
         const hasWall = this.hasWallAt(ox, oy)
 
         if (hasWall) {
+            this.sound.play('error')
             return
         }
 
@@ -170,6 +171,7 @@ export default class Game extends Phaser.Scene {
                 return
             }
             if (this.hasWallAt(nx, ny)) {
+                this.sound.play('error')
                 return
             }
 
@@ -189,11 +191,11 @@ export default class Game extends Phaser.Scene {
                     if (coveredTarget) {
                         this.changeTargetCovetedCountForColor(targetColor, 1)
                     }
-
                 },
             }
             ))
         }
+        this.sound.play('move')
         {
             this.tweens.add(Object.assign(
                 baseTween,
@@ -245,6 +247,11 @@ export default class Game extends Phaser.Scene {
         }
 
         this.targetsCoveredByColor[color] = change
+
+        this.targetsCoveredByColor[color] += change 
+        if (change > 0){
+            this.sound.play('confirmation')
+        }
     }
 
     private getBoxDataAt(x: number, y: number) {
