@@ -48,9 +48,9 @@ Complete all 10 levels to save the day!
 
 ## Contributers:
 
-[Ross Hurlock](https://github.com/hurlockr)
-[Ohad Porat](https://github.com/ohad-porat)
-[Dru Daniels](https://github.com/Dru-Daniels)
+- [Ross Hurlock](https://github.com/hurlockr)
+- [Ohad Porat](https://github.com/ohad-porat)
+- [Dru Daniels](https://github.com/Dru-Daniels)
 
 ## Try it Out on Heroku:
 
