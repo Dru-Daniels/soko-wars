@@ -1,4 +1,5 @@
 import React from "react";
+
 import R2 from '../../assets/images/shutterstock_652557517.png'
 
 const NavBar = () => {
