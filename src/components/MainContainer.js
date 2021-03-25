@@ -7,8 +7,8 @@ const MainContainer = () => {
   return (
     <>
       <h1 className="header-img"><img
-        src="https://fontmeme.com/permalink/210322/a4f40591d803559834ef913901e4f31a.png"
-        alt="Play Stoko Wars"
+        src="https://fontmeme.com/permalink/210325/a3c7665f6f68395fa866952a89d1bd2a.png"
+        alt="Soko Wars"
       /></h1>
       <GameShow />
       <ContributorsSection/>

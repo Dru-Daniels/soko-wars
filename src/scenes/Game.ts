@@ -10,7 +10,6 @@ import { Direction } from '../consts/Direction'
 
 import { sharedInstance as levels } from '../levels/levelService'
 
-
 export default class Game extends Phaser.Scene {
     private cursors?: Phaser.Types.Input.Keyboard.CursorKeys
     private player?: Phaser.GameObjects.Sprite
@@ -22,8 +21,6 @@ export default class Game extends Phaser.Scene {
     private movesCount = 0
     private currentLevel = 1
 
-    
-
     constructor() {
         super('game')
     }
@@ -33,8 +30,6 @@ export default class Game extends Phaser.Scene {
     }
 
     preload() {
-        this.load.image('background', 'assets/backgroundTest.png')
-
         this.load.spritesheet('tiles', 'assets/sokoban_tilesheet.png', {
             frameWidth: 64,
             startFrame: 0
@@ -182,7 +177,7 @@ export default class Game extends Phaser.Scene {
             if (coveredTarget) {
                 this.changeTargetCovetedCountForColor(targetColor, -1)
             }
-            
+
             this.tweens.add(Object.assign(baseTween, {
                 targets: box,
                 onComplete: () => {

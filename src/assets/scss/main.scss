@@ -3,6 +3,7 @@
   margin: 0;
   padding: 0;
   font-family: 'Montserrat', sans-serif;
+  scroll-behavior: smooth;
 }
 
 html {
@@ -15,6 +16,15 @@ body{
   background: rgb(200,211,212);
   background: radial-gradient(circle, #fff 79%, rgba(240,254,255,1)100%);
   height: 100%;
+}
+
+i {
+  color: red;
+}
+
+i:hover {
+  color: #fff;
+  text-shadow: 0 0 3px red;
 }
 
 //NavBar
@@ -63,19 +73,17 @@ body{
 
 .nav-bar a:focus:not(:first-child), .nav-bar a:active:not(:first-child)  {
   border: 1px solid transparent;
-  border: 1px solid #ffd71c;
+  border: 1px solid #b5b6b6;
 }
 
 .nav-bar a:hover:first-child, .nav-bar a:focus:first-child, .nav-bar a:active:first-child {
-  opacity: .4;
+  opacity: .5;
 }
 
 // Crawler
-
-// DO NOT DELETE THIS. IT WILL KEEP THE 
-// CODE AT THE TOP OF THE PAGE! BUT ANNOYING DURING DEVELOPMENT 
 .crawler-container {
   background: #000;
+  background-image: url(https://i.dlpng.com/static/png/7029942_preview.png);
   overflow: hidden;
   position: fixed;
   top: 0;
@@ -95,6 +103,10 @@ body{
   color: #ffd71c;
   overflow: hidden;
   position: relative;
+}
+
+.content-body {
+  text-align: center;
 }
 
 .star-wars-intro .main-content{
@@ -125,7 +137,7 @@ body{
 .star-wars-intro .title-content {
   position: absolute;
   top: 100%;
-  animation: scroll 38s ease-in 4s forwards;
+  animation: scroll 40s ease-in 4s forwards;
 }
 
 .star-wars-intro .title-content > .content-header {
@@ -155,36 +167,6 @@ body{
   animation: hideDiv 3s ease-in 25s forwards;
   -webkit-animation-fill-mode: forwards;
   animation-fill-mode: forwards;
-}
-
-@-webkit-keyframes intro {
-  0% { opacity: 1; }
-  90% { opacity: 1; }
-  100% { opacity: 0; }
-}
-
-@-moz-keyframes intro {
-  0% { opacity: 1; }
-  90% { opacity: 1; }
-  100% { opacity: 0; }
-}
-
-@-ms-keyframes intro {
-  0% { opacity: 1; }
-  90% { opacity: 1; }
-  100% { opacity: 0; }
-}
-
-@-o-keyframes intro {
-  0% { opacity: 1; }
-  90% { opacity: 1; }
-  100% { opacity: 0; }
-}
-
-@keyframes intro {
-  0% { opacity: 1; }
-  90% { opacity: 1; }
-  100% { opacity: 0; }
 }
 
 @-webkit-keyframes logo {
@@ -223,44 +205,101 @@ body{
 }
 
 @-webkit-keyframes hideDiv {
-  0% { -webkit-transform: translateY(100%); opacity: 1; }
-  50% { -webkit-transform: translateY(50%); opacity: 0; }
-  100% { -webkit-transform: translateY(0); opacity: 0; display: none; height: 0; z-index: 0;}
+  0% { -webkit-transform: translateY(0); opacity: 1; }
+  20% { -webkit-transform: translateY(50%); opacity: .5; }
+  100% { -webkit-transform: translateY(100%); opacity: 0; display: none; height: 0; z-index: 0;}
 }
 
 @-moz-keyframes hideDiv {
-  0% { -moz-transform: translateY(100%); opacity: 1; }
-  50% {  -moz-transform: translateY(50%); opacity: 0; }
-  100% { -moz-transform: translateY(0); opacity: 0; display: none; height: 0; z-index: 0;}
+  0% { -moz-transform: translateY(0); opacity: 1; }
+  20% {  -moz-transform: translateY(50%); opacity: .5; }
+  100% { -moz-transform: translateY(100%); opacity: 0; display: none; height: 0; z-index: 0;}
 }
 
 @-ms-keyframes hideDiv {
-  0% { -ms-transform: translateY(100%); opacity: 1; }
-  50% {  -ms-transform: translateY(50%); opacity: 0; }
-  100% { -ms-transform: translateY(0); opacity: 0; display: none; height: 0; z-index: 0;}
+  0% { -ms-transform: translateY(0); opacity: 1; }
+  20% {  -ms-transform: translateY(50%); opacity: .5; }
+  100% { -ms-transform: translateY(100%); opacity: 0; display: none; height: 0; z-index: 0;}
 }
 
 @-o-keyframes hideDiv {
-  0% { -o-transform: translateY(100%); opacity: 1; }
-  50% { -o-transform: translateY(50%); opacity: 0; }
-  100% { -o-transform: translateY(0); opacity: 0; display: none; height: 0; z-index: 0;}
+  0% { -o-transform: translateY(0); opacity: 1; }
+  20% { -o-transform: translateY(50%); opacity: .5; }
+  100% { -o-transform: translateY(100%); opacity: 0; display: none; height: 0; z-index: 0;}
 }
 
 @keyframes hideDiv {
-  0% { transform: translateY(100%); opacity: 1; }
+  0% { transform: translateY(0%); opacity: 1; }
   50% { transform: translateY(50%); opacity: 0; }
-  100% { transform: translateY(0); opacity: 0; display: none ; height: 0; z-index: 0;}
+  100% { transform: translateY(100%); opacity: 0; display: none ; height: 0; z-index: 0;}
+}
+
+// DeathStar
+#phaser-container {
+  background-color: black;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.death-star-top {
+  position: relative;
+}
+
+.death-star-btm {
+  position: relative;
+}
+
+.death-star-play-btn {
+  position: absolute;
+  position: absolute;  top: 133%;  left: 50%;  
+  transform: translate(-50%, -50%);
+  width: 420px;
+  max-width: 550px;
+  -webkit-transition: all 1s cubic-bezier(0.165, 0.84, 0.44, 1);
+  transition: all 1s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.death-star-close-btn {
+  position: absolute;
+  position: absolute;  top: 130%;  left: 50%;  
+  transform: translate(-50%, -50%);
+  width: 420px;
+  max-width: 550px;
+  -webkit-transition: all 1s cubic-bezier(0.165, 0.84, 0.44, 1);
+  transition: all 1s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.death-star-play-btn:hover, 
+.death-star-close-btn:hover {
+  -webkit-transform: translate(-50%, -55%);
+  transform: translate(-50%, -55%);
+}
+
+#hideToggle{
+  display: none;
+}
+
+.phaser-canvas {
+  align-items: center;
+  padding-top: 50px;
+  padding-bottom: 50px;
 }
 
 // MainContainer
 .header-img {
-  margin: 2rem auto 1rem auto;
+  margin: 0rem auto 1rem auto;
   text-align: center;
   height: 100px;
 }
 
+.contributors-header-img {
+  padding-top: 6rem;
+}
+
 .contributors-container {
-  // min-height: 100vh;
   margin: 4rem auto 0 auto;
   max-width: 1140px;
   text-align: center;
@@ -273,18 +312,17 @@ body{
 }
 
 .contributors-card-container {
-  margin: 2.5rem 0;
+  margin: 2.5rem 0 0 0;
   padding: 0 1rem;
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-evenly;
   flex-wrap: wrap;
 }
 
 .contributor-card {
   position: relative;
-  padding: 3rem 1.5rem;
   width: 305px;
   height: 450px;
   background-color: #fff;
@@ -292,8 +330,8 @@ body{
   box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
   transition: transform 0.6s;
   display: flex;
-  flex-direction: row;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: space-between;
   align-items: center;
   cursor: pointer;
 }
@@ -316,36 +354,45 @@ body{
 .contributor-card:hover {
   -webkit-transform: translate(0px, -10px);
   transform: translate(0px, -10px);
-
 }
 
 .contributor-card:hover::after {
     opacity: 1;
 }
 
-// R2Picture Top
-.header-img-container {
-  margin: 0 auto;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  background: url(https://images.macrumors.com/t/Mhjt2Rum8O-8mTcWKWVr9eiUqBM=/1600x1200/smart/article-new/2017/09/bb-9e-r2-d2-star-wars.jpg);
-  background-repeat: no-repeat;
-  background-size: 1471px auto;
-  width: 1471px;
+.contributor-img {
+  width: 100%;
+  height: auto;
 }
 
-.phaser-canvas {
-  // display: flex;
-  height: 300px;
-  padding: 360px 600px 440px 750px ;
-  width: 1471px;
+.contributor-card-content {
+  display: flex;
+  flex-direction: column;
+  text-align: initial;
+  padding: 1rem;
+  height: 100%;
+  justify-content: space-around;
+  align-items: center;
+  color: #64657e;
+}
+
+.contributor-card-name {
+  font-size: 1.4rem;
+}
+
+.contributor-card-fact {
+  font-size: 14px;
+}
+
+.fab {
+  font-size: 1.5rem;
+  padding: .5rem;
 }
 
 // Footer
 .footer {
-  margin-top:400px;
-  background-color: #0a0e20;
+  margin-top: 175px;
+  background-color: #000;
   background-image: url(https://lumiere-a.akamaihd.net/v1/images/open-uri20150608-27674-lashgn_719bef9d.jpeg?region=0%2C0%2C1200%2C675);
   background-repeat: no-repeat;
   background-size: 100vw;

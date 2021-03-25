@@ -8,8 +8,8 @@ const Crawler = () => {
         <div className="star-wars-intro">
             <img
               className="main-logo"
-              src="https://fontmeme.com/permalink/210322/aac87b3f33fef6a2a1964d64f50d1ef5.png"
-              alt=""
+              src="https://fontmeme.com/permalink/210325/40ebd501e12b992b844481a20f16696c.png"
+              alt="Soko Wars"
             />
           <div className="main-content">
             <div className="title-content">
@@ -20,14 +20,12 @@ const Crawler = () => {
               <br />
 
               <p className="content-body">
-                Oh No! R2-D2 took a wrong turn inside the Death Star. He seems to
-                be trapped in a warehouse in the depths of the ship. Help him get
-                out before it's too late!
+                After boarding the Death Star to rescue Princess Leia, R2-D2 has been given a secret mission by the Rebel Alliance to move explosive crates to key locations.
               </p>
-              <br />
-              <p>Keep scrolling to save the day.</p>
-              <br />
-              <p>May the force be with you.</p>
+              <br /><br />
+              <p className="content-body">Your mission is to assist R2 in destroying the Empire's ultimate weapon. But be careful, certain crates will only be activated if put in precisely the right location.</p>
+              <br /><br />
+              <p className="content-body">May the Force be with you.</p>
             </div>
           </div>
         </div>

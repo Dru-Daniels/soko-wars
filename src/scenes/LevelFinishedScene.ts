@@ -13,7 +13,7 @@ export default class LevelFinishedScene extends Phaser.Scene {
     this.load.image('next-level-button', nextLevelButton)
     this.load.image('retry-button', retryButton)
   }
-  
+
   create(d: { moves: number, currentLevel: number }) {
     this.sound.play('boop', {
       volume: 0.05
@@ -36,7 +36,7 @@ export default class LevelFinishedScene extends Phaser.Scene {
       fontSize: 30
     })
       .setOrigin(0.5)
-      
+
     let retryX = 170
     if (data.currentLevel + 1 > levels.levelsCount) {
       retryX = 320
@@ -56,6 +56,6 @@ export default class LevelFinishedScene extends Phaser.Scene {
       .on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
         this.sound.play('click')
         this.scene.start('game', { level: data.currentLevel + 1 })
-  })
+      })
   }
 }

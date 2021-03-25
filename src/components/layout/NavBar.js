@@ -1,4 +1,5 @@
 import React from "react";
+
 import R2 from '../../assets/images/shutterstock_652557517.png'
 
 const NavBar = () => {
@@ -22,13 +23,13 @@ const NavBar = () => {
             alt="R2-D2 Logo"
           />
         </a>
-        <a href="/#">
+        <a href="/#gameDiv">
           <li>PLAY</li>
         </a>
-        <a href="/#">
+        <a href="/#contributors">
           <li>CREATORS</li>
         </a>
-        <a href="/#">
+        <a href="/#contributors">
           <li>CONTACT</li>
         </a>
       </div>
