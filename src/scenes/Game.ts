@@ -28,8 +28,6 @@ export default class Game extends Phaser.Scene {
     }
 
     preload() {
-        this.load.image('background', 'assets/backgroundTest.png')
-
         this.load.spritesheet('tiles', 'assets/sokoban_tilesheet.png', {
             frameWidth: 64,
             startFrame: 0
@@ -39,7 +37,6 @@ export default class Game extends Phaser.Scene {
     }
 
     create() {
-        this.add.image(320, 257, 'background');
 
         const level = [
             [0, 0, 99, 99, 99, 0, 0, 0, 0, 0],

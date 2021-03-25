@@ -4,30 +4,28 @@ import React from "react"
 const Crawler = () => {
 
   return (
-      <div class="crawler-container" id='hideMe'>
-        <div class="star-wars-intro">
+      <div className="crawler-container" id='hideMe'>
+        <div className="star-wars-intro">
             <img
-              class="main-logo"
-              src="https://fontmeme.com/permalink/210322/aac87b3f33fef6a2a1964d64f50d1ef5.png"
-              alt=""
+              className="main-logo"
+              src="https://fontmeme.com/permalink/210325/1d373870ce4bb5c9db610c54b5513133.png"
+              alt="Soko Wars"
             />
-          <div class="main-content">
-            <div class="title-content">
-              <p class="content-header">
+          <div className="main-content">
+            <div className="title-content">
+              <p className="content-header">
                 EPISODES IV-VI
                 <br />A New Droid
               </p>
               <br />
 
-              <p class="content-body">
-                Oh No! R2-D2 took a wrong turn inside the Death Star. He seems to
-                be trapped in a warehouse in the depths of the ship. Help him get
-                out before it's too late!
+              <p className="content-body">
+                After boarding the Death Star to rescue Princess Leia, R2-D2 has been given a secret mission by the Rebel Alliance to move explosive crates to key locations.
               </p>
-              <br />
-              <p>Keep scrolling to save the day.</p>
-              <br />
-              <p>May the force be with you.</p>
+              <br /><br />
+              <p className="content-body">Your mission is to assist R2 in destroying the Empire's ultimate weapon. But be careful, certain crates will only be activated if put in precisely the right location.</p>
+              <br /><br />
+              <p className="content-body">May the Force be with you.</p>
             </div>
           </div>
         </div>

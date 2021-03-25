@@ -7,7 +7,7 @@ const MainContainer = () => {
   return (
     <>
       <h1 className="header-img"><img
-        src="https://fontmeme.com/permalink/210322/a4f40591d803559834ef913901e4f31a.png"
+        src="https://fontmeme.com/permalink/210325/5a0ff56d9f13a06e47b7cb9b47c71f85.png"
         alt="Play Stoko Wars"
       /></h1>
       <GameShow />
