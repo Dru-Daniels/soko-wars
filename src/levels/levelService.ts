@@ -5,6 +5,7 @@ import level4 from './level4'
 import level5 from './level5'
 import level6 from './level6'
 import level7 from './level7'
+import level8 from './level8'
 
 class LevelService {
   private levels = [
@@ -14,7 +15,8 @@ class LevelService {
     level4,
     level5,
     level6,
-    level7
+    level7,
+    level8
   ]
 
   getLevel(level: number) {
