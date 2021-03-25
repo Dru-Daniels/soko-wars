@@ -17,11 +17,11 @@ May the Force be with you.
    `yarn install`
 4. In your terminal:
    `yarn start`
-5. Navigate to [localhost:8000](http://localhost:3000/)
+5. Navigate to [localhost:3000](http://localhost:3000/)
 
 ## Usage
 
-After following the installation instructions navigate to [localhost:8000](http://localhost:8000/)
+After following the installation instructions navigate to [localhost:3000](http://localhost:3000/)
 
 ![Image of Homepage](/public/assets/homepage.png)
 
