@@ -3,7 +3,7 @@
 	"version": "1.0.0",
 	"description": "Soko Wars is a Push Box JS Puzzle Game",
 	"scripts": {
-		"start": "parcel src/index.html -p 8000",
+		"start": "parcel src/index.html -p 55568",
 		"build": "parcel build src/index.html --out-dir dist",
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
