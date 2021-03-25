@@ -63,7 +63,7 @@ body{
 
 .nav-bar a:focus:not(:first-child), .nav-bar a:active:not(:first-child)  {
   border: 1px solid transparent;
-  border: 1px solid #ffd71c;
+  border: 1px solid #b5b6b6;
 }
 
 .nav-bar a:hover:first-child, .nav-bar a:focus:first-child, .nav-bar a:active:first-child {
@@ -71,11 +71,9 @@ body{
 }
 
 // Crawler
-
-// DO NOT DELETE THIS. IT WILL KEEP THE 
-// CODE AT THE TOP OF THE PAGE! BUT ANNOYING DURING DEVELOPMENT 
 .crawler-container {
   background: #000;
+  background-image: url(https://i.dlpng.com/static/png/7029942_preview.png);
   overflow: hidden;
   position: fixed;
   top: 0;
@@ -95,6 +93,10 @@ body{
   color: #ffd71c;
   overflow: hidden;
   position: relative;
+}
+
+.content-body {
+  text-align: center;
 }
 
 .star-wars-intro .main-content{
@@ -125,7 +127,7 @@ body{
 .star-wars-intro .title-content {
   position: absolute;
   top: 100%;
-  animation: scroll 38s ease-in 4s forwards;
+  animation: scroll 40s ease-in 4s forwards;
 }
 
 .star-wars-intro .title-content > .content-header {
@@ -155,36 +157,6 @@ body{
   animation: hideDiv 3s ease-in 25s forwards;
   -webkit-animation-fill-mode: forwards;
   animation-fill-mode: forwards;
-}
-
-@-webkit-keyframes intro {
-  0% { opacity: 1; }
-  90% { opacity: 1; }
-  100% { opacity: 0; }
-}
-
-@-moz-keyframes intro {
-  0% { opacity: 1; }
-  90% { opacity: 1; }
-  100% { opacity: 0; }
-}
-
-@-ms-keyframes intro {
-  0% { opacity: 1; }
-  90% { opacity: 1; }
-  100% { opacity: 0; }
-}
-
-@-o-keyframes intro {
-  0% { opacity: 1; }
-  90% { opacity: 1; }
-  100% { opacity: 0; }
-}
-
-@keyframes intro {
-  0% { opacity: 1; }
-  90% { opacity: 1; }
-  100% { opacity: 0; }
 }
 
 @-webkit-keyframes logo {
@@ -223,33 +195,33 @@ body{
 }
 
 @-webkit-keyframes hideDiv {
-  0% { -webkit-transform: translateY(100%); opacity: 1; }
-  50% { -webkit-transform: translateY(50%); opacity: 0; }
-  100% { -webkit-transform: translateY(0); opacity: 0; display: none; height: 0; z-index: 0;}
+  0% { -webkit-transform: translateY(0); opacity: 1; }
+  20% { -webkit-transform: translateY(50%); opacity: .5; }
+  100% { -webkit-transform: translateY(100%); opacity: 0; display: none; height: 0; z-index: 0;}
 }
 
 @-moz-keyframes hideDiv {
-  0% { -moz-transform: translateY(100%); opacity: 1; }
-  50% {  -moz-transform: translateY(50%); opacity: 0; }
-  100% { -moz-transform: translateY(0); opacity: 0; display: none; height: 0; z-index: 0;}
+  0% { -moz-transform: translateY(0); opacity: 1; }
+  20% {  -moz-transform: translateY(50%); opacity: .5; }
+  100% { -moz-transform: translateY(100%); opacity: 0; display: none; height: 0; z-index: 0;}
 }
 
 @-ms-keyframes hideDiv {
-  0% { -ms-transform: translateY(100%); opacity: 1; }
-  50% {  -ms-transform: translateY(50%); opacity: 0; }
-  100% { -ms-transform: translateY(0); opacity: 0; display: none; height: 0; z-index: 0;}
+  0% { -ms-transform: translateY(0); opacity: 1; }
+  20% {  -ms-transform: translateY(50%); opacity: .5; }
+  100% { -ms-transform: translateY(100%); opacity: 0; display: none; height: 0; z-index: 0;}
 }
 
 @-o-keyframes hideDiv {
-  0% { -o-transform: translateY(100%); opacity: 1; }
-  50% { -o-transform: translateY(50%); opacity: 0; }
-  100% { -o-transform: translateY(0); opacity: 0; display: none; height: 0; z-index: 0;}
+  0% { -o-transform: translateY(0); opacity: 1; }
+  20% { -o-transform: translateY(50%); opacity: .5; }
+  100% { -o-transform: translateY(100%); opacity: 0; display: none; height: 0; z-index: 0;}
 }
 
 @keyframes hideDiv {
-  0% { transform: translateY(100%); opacity: 1; }
+  0% { transform: translateY(0%); opacity: 1; }
   50% { transform: translateY(50%); opacity: 0; }
-  100% { transform: translateY(0); opacity: 0; display: none ; height: 0; z-index: 0;}
+  100% { transform: translateY(100%); opacity: 0; display: none ; height: 0; z-index: 0;}
 }
 
 // MainContainer
@@ -323,23 +295,58 @@ body{
     opacity: 1;
 }
 
-// R2Picture Top
-.header-img-container {
+// DeathStar
+#phaser-container {
+  background-color: black;
   margin: 0 auto;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
-  background: url(https://images.macrumors.com/t/Mhjt2Rum8O-8mTcWKWVr9eiUqBM=/1600x1200/smart/article-new/2017/09/bb-9e-r2-d2-star-wars.jpg);
-  background-repeat: no-repeat;
-  background-size: 1471px auto;
-  width: 1471px;
+  align-items: center;
+}
+
+.death-star-top {
+  position: relative;
+}
+
+.death-star-btm {
+  position: relative;
+}
+
+.death-star-play-btn {
+  position: absolute;
+  position: absolute;  top: 133%;  left: 50%;  
+  transform: translate(-50%, -50%);
+  width: 420px;
+  max-width: 550px;
+  -webkit-transition: all 1s cubic-bezier(0.165, 0.84, 0.44, 1);
+  transition: all 1s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.death-star-close-btn {
+  position: absolute;
+  position: absolute;  top: 130%;  left: 50%;  
+  transform: translate(-50%, -50%);
+  width: 420px;
+  max-width: 550px;
+  -webkit-transition: all 1s cubic-bezier(0.165, 0.84, 0.44, 1);
+  transition: all 1s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.death-star-play-btn:hover, 
+.death-star-close-btn:hover {
+  -webkit-transform: translate(-50%, -55%);
+  transform: translate(-50%, -55%);
+}
+
+#hideToggle{
+  display: none;
 }
 
 .phaser-canvas {
-  // display: flex;
-  height: 300px;
-  padding: 360px 600px 440px 750px ;
-  width: 1471px;
+  align-items: center;
+  padding-top: 50px;
+  padding-bottom: 50px;
 }
 
 // Footer

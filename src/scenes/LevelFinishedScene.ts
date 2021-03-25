@@ -13,7 +13,7 @@ export default class LevelFinishedScene extends Phaser.Scene {
     this.load.image('next-level-button', nextLevelButton)
     this.load.image('retry-button', retryButton)
   }
-  
+
   create(d: { moves: number, currentLevel: number }) {
 
     const data = Object.assign({ moves: 0, currentLevel: 1 }, d)
@@ -33,7 +33,7 @@ export default class LevelFinishedScene extends Phaser.Scene {
       fontSize: 30
     })
       .setOrigin(0.5)
-      
+
     let retryX = 170
     if (data.currentLevel + 1 > levels.levelsCount) {
       retryX = 320
@@ -51,6 +51,6 @@ export default class LevelFinishedScene extends Phaser.Scene {
       .setInteractive()
       .on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
         this.scene.start('game', { level: data.currentLevel + 1 })
-  })
+      })
   }
 }
