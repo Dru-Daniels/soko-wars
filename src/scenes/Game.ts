@@ -44,7 +44,6 @@ export default class Game extends Phaser.Scene {
     }
 
     create(d: { level: number }) {
-        this.add.image(320, 257, 'background')
         const data = Object.assign({ level: 1 }, d)
         const level = levels.getLevel(data.level)
 
