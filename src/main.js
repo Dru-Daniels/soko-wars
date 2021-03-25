@@ -8,6 +8,10 @@ import Preloader from "./scenes/Preloader"
 import Game from './scenes/Game'
 import LevelFinishedScene from './scenes/LevelFinishedScene'
 
+const PORT = process.env.PORT || 3000;
+
+app.listen(PORT, () => console.log(`Server is listening on port ${PORT}...`));
+
 const config = {
 	type: Phaser.AUTO,
 	parent: 'phaser-parent',
