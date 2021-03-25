@@ -5,7 +5,8 @@
 	"scripts": {
 		"start": "parcel src/index.html -p 3000",
 		"build": "parcel build src/index.html --out-dir dist",
-		"test": "echo \"Error: no test specified\" && exit 1"
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"start": "npm run build && webpack-dev-server --host=0.0.0.0 --port=$PORT"
 	},
 	"author": "launchcrew",
 	"license": "MIT",
@@ -68,5 +69,6 @@
 	"engines": {
 		"node": "^14.15",
 		"yarn": "1.22.10"
-	}
+	},
+	"heroku-run-build-script": "true"
 }
