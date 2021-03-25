@@ -1,11 +1,14 @@
 import Phaser from 'phaser'
 
-import * as Colors from '../consts/Color'
+import smallRetryButton from '../../public/assets/retrySmall.png'
+import soundOn from '../../public/assets/sound-on.png'
+import soundOff from '../../public/assets/sound-off.png'
 
 import { boxColorToTargetColor, targetColorToBoxColor } from '../utils/ColorUtils'
 import { offsetForDirection } from '../utils/TileUtil'
 import { baseTweenForDirection } from "../utils/TweenUtils"
 
+import * as Colors from '../consts/Color'
 import { Direction } from '../consts/Direction'
 
 import { sharedInstance as levels } from '../levels/levelService'
@@ -36,6 +39,10 @@ export default class Game extends Phaser.Scene {
         })
 
         this.cursors = this.input.keyboard.createCursorKeys()
+
+        this.load.image('small-retry-button', smallRetryButton)
+        this.load.image('sound-on', soundOn)
+        this.load.image('sound-off', soundOff)
     }
 
     create(d: { level: number }) {
@@ -60,10 +67,30 @@ export default class Game extends Phaser.Scene {
 
         this.extractBoxes(this.layer)
 
-        this.movesCountLabel = this.add.text(520, 50, `Moves: ${this.movesCount}`, {
+        this.movesCountLabel = this.add.text(520, -2, `Moves: ${this.movesCount}`, {
             fontFamily: 'Abel',
             fontSize: 25
         })
+
+        this.add.image(540, 485, 'small-retry-button')
+            .setInteractive()
+            .on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
+                this.sound.play('click')
+                this.scene.start('game', { level: this.currentLevel })
+            })
+
+        let soundIcon = 'sound-on'
+        let mute = true
+        this.add.image(10, 10, soundIcon)
+            .setInteractive()
+            .on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
+                this.game.sound.mute = mute
+                if (mute === true) {
+                    mute = false
+                } else {
+                    mute = true
+                }
+            })
     }
 
     update() {
