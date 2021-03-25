@@ -5,7 +5,8 @@
 	"scripts": {
 		"start": "npm run build && webpack-dev-server",
 		"build": "parcel build src/index.html",
-		"test": "echo \"Error: no test specified\" && exit 1"
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"heroku-postbuild": "parcel build src/index.html"
 	},
 	"author": "launchcrew",
 	"license": "MIT",
@@ -57,7 +58,8 @@
 		"react-hot-loader": "^4.13.0",
 		"react-router-dom": "^5.2.0",
 		"style-loader": "^2.0.0",
-		"webfontloader": "^1.6.28"
+		"webfontloader": "^1.6.28",
+		"parcel-bundler": "^1.12.5" 
 	},
 	"parcelCleanPaths": [
 		"dist"
