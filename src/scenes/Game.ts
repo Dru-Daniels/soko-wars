@@ -5,9 +5,10 @@ import * as Colors from '../consts/Color'
 import { boxColorToTargetColor, targetColorToBoxColor } from '../utils/ColorUtils'
 import { offsetForDirection } from '../utils/TileUtil'
 import { baseTweenForDirection } from "../utils/TweenUtils"
-// import { baseTweenForDirection } from '../../utils/TweenUtils'
 
 import { Direction } from '../consts/Direction'
+
+import { sharedInstance as levels } from '../levels/levelService'
 
 export default class Game extends Phaser.Scene {
     private cursors?: Phaser.Types.Input.Keyboard.CursorKeys
@@ -18,6 +19,7 @@ export default class Game extends Phaser.Scene {
     private boxesByColor: { [key: number]: Phaser.GameObjects.Sprite[] } = {}
 
     private movesCount = 0
+    private currentLevel = 1
 
     constructor() {
         super('game')
@@ -36,19 +38,12 @@ export default class Game extends Phaser.Scene {
         this.cursors = this.input.keyboard.createCursorKeys()
     }
 
-    create() {
+    create(d: { level: number }) {
+        const data = Object.assign({ level: 1 }, d)
+        const level = levels.getLevel(data.level)
 
-        const level = [
-            [0, 0, 99, 99, 99, 0, 0, 0, 0, 0],
-            [0, 0, 99, 64, 99, 0, 0, 0, 0, 0],
-            [0, 0, 99, 0, 99, 99, 99, 99, 0, 0],
-            [99, 99, 99, 9, 0, 10, 77, 99, 0, 0],
-            [99, 51, 0, 8, 52, 99, 99, 99, 0, 0],
-            [99, 99, 99, 99, 7, 99, 0, 0, 0, 0],
-            [0, 0, 0, 99, 38, 99, 0, 0, 0, 0],
-            [0, 0, 0, 99, 99, 99, 0, 0, 0, 0],
+        this.currentLevel = data.level
 
-        ]
         const map = this.make.tilemap({
             data: level,
             tileWidth: 64,
@@ -214,7 +209,8 @@ export default class Game extends Phaser.Scene {
         const levelFinishedScene = this.allTargetsCovered()
         if (levelFinishedScene) {
             this.scene.start('level-finished', {
-                moves: this.movesCount
+                moves: this.movesCount,
+                currentLevel: this.currentLevel
             })
         }
     }

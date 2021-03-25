@@ -8,7 +8,7 @@ const Crawler = () => {
         <div className="star-wars-intro">
             <img
               className="main-logo"
-              src="https://fontmeme.com/permalink/210325/1d373870ce4bb5c9db610c54b5513133.png"
+              src="https://fontmeme.com/permalink/210325/40ebd501e12b992b844481a20f16696c.png"
               alt="Soko Wars"
             />
           <div className="main-content">
