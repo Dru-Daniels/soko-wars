@@ -2,6 +2,12 @@
 
 ## Description
 
+After boarding the Death Star to rescue Princess Leia, R2-D2 has been given a secret mission by the Rebel Alliance to move explosive crates to key locations.
+
+Your mission is to assist R2 in destroying the Empire's ultimate weapon. But be careful, certain crates will only be activated if put in precisely the right location.
+
+May the Force be with you.
+
 ## Installation
 
 1. Visit [Kenny Gaming Assets](https://www.kenney.nl/assets/sokoban) and download the
@@ -38,7 +44,7 @@ Complete all 10 levels to save the day!
 - Phaser 3
 - Parcel
 - React.js
-- yarn
+- Yarn
 
 ## Contributers:
 
