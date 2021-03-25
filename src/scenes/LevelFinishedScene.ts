@@ -15,6 +15,9 @@ export default class LevelFinishedScene extends Phaser.Scene {
   }
 
   create(d: { moves: number, currentLevel: number }) {
+    this.sound.play('boop', {
+      volume: 0.05
+    })
 
     const data = Object.assign({ moves: 0, currentLevel: 1 }, d)
 
@@ -41,6 +44,7 @@ export default class LevelFinishedScene extends Phaser.Scene {
     this.add.image(retryX, 400, 'retry-button')
       .setInteractive()
       .on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
+        this.sound.play('click')
         this.scene.start('game', { level: 1 })
       })
 
@@ -50,6 +54,7 @@ export default class LevelFinishedScene extends Phaser.Scene {
     this.add.image(470, 400, 'next-level-button')
       .setInteractive()
       .on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
+        this.sound.play('click')
         this.scene.start('game', { level: data.currentLevel + 1 })
       })
   }
