@@ -22,7 +22,7 @@ const ContributorsSection = () => {
           </div>
           <div className="contributor-card-content">
             <p className="contributor-card-name">Ohad Porat</p>
-            <h6 className="contributor-card-fact">Star Wars Spirit Animal: Yoda</h6>
+            <h6 className="contributor-card-fact">Favorite Star Wars Character: Mandolorian</h6>
             <div className='contributor-link-container'>
               <a href='https://www.linkedin.com/in/ohad-porat/' target="_blank" >
                 <i className="fab fa-linkedin"/>
@@ -41,7 +41,7 @@ const ContributorsSection = () => {
           </div>
           <div className="contributor-card-content">
           <p className="contributor-card-name">Dru Daniels</p>
-            <h6 className="contributor-card-fact">Star Wars Spirit Animal: Yoda</h6>
+            <h6 className="contributor-card-fact">Favorite Star Wars Character: Yoda</h6>
             <div className='contributor-link-container'>
               <a href='https://www.linkedin.com/in/dru-daniels/' target="_blank" >
                 <i className="fab fa-linkedin" />
@@ -59,7 +59,7 @@ const ContributorsSection = () => {
           </div>
           <div className="contributor-card-content">
             <p className="contributor-card-name">Ross Hurlock</p>
-            <h6 className="contributor-card-fact">Star Wars Spirit Animal: Yoda</h6>
+            <h6 className="contributor-card-fact">Favorite Star Wars Character: Obi-Wan</h6>
             <div className='contributor-link-container'>
               <a href='https://www.linkedin.com/in/rosshurlock/' target="_blank" >
                 <i className="fab fa-linkedin" />

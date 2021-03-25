@@ -64,5 +64,9 @@
 	"staticFiles": {
 		"staticPath": "public",
 		"watcherGlob": "**"
+	},
+	"engines": {
+		"node": "^14.15",
+		"yarn": "1.22.10"
 	}
 }
