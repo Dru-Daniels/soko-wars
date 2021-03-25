@@ -3,10 +3,9 @@
 	"version": "1.0.0",
 	"description": "Soko Wars is a Push Box JS Puzzle Game",
 	"scripts": {
-		"start": "parcel src/index.html -p 3000",
-		"build": "parcel build src/index.html --out-dir dist",
-		"test": "echo \"Error: no test specified\" && exit 1",
-		"start": "npm run build && webpack-dev-server --host=0.0.0.0 --port=$PORT --disable-host-check"
+		"start": "npm run build && webpack-dev-server",
+		"build": "parcel build src/index.html",
+		"test": "echo \"Error: no test specified\" && exit 1"
 	},
 	"author": "launchcrew",
 	"license": "MIT",
@@ -51,6 +50,7 @@
 		"babel-preset-react": "^6.24.1",
 		"bulma": "^0.9.2",
 		"css-loader": "^5.0.0",
+		"express": "^4.17.1",
 		"jsx-dom": "^7.0.0-beta.3",
 		"parcel-bundler": "^1.12.5",
 		"phaser": "^3.50.1",
