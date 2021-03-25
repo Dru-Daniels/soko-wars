@@ -37,7 +37,7 @@ export default class LevelFinishedScene extends Phaser.Scene {
     })
       .setOrigin(0.5)
 
-    let retryX = 170
+    let retryX = 150
     if (data.currentLevel + 1 > levels.levelsCount) {
       retryX = 320
     }
@@ -45,13 +45,13 @@ export default class LevelFinishedScene extends Phaser.Scene {
       .setInteractive()
       .on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
         this.sound.play('click')
-        this.scene.start('game', { level: 1 })
+        this.scene.start('game', { level: data.currentLevel })
       })
 
     if (data.currentLevel + 1 > levels.levelsCount) {
       return
     }
-    this.add.image(470, 400, 'next-level-button')
+    this.add.image(490, 400, 'next-level-button')
       .setInteractive()
       .on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
         this.sound.play('click')
