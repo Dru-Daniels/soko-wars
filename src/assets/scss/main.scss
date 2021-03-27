@@ -471,8 +471,22 @@ i:hover {
 
 // Media Queries
 @media screen and (max-width: 1000px) {
+  
   .contributor-card {
     margin:1rem;
+  }
+  .contributor-title-sub {
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
+  }
+
+  #phaser-container {
+    margin-top: 2rem;
+  }
+
+  .ds-top-sm, .ds-btm-sm {
+    width: 100vw;
   }
 }
 
@@ -523,6 +537,12 @@ i:hover {
   
   .nav-bar a:focus:not(:first-child), .nav-bar a:active:not(:first-child)  {
     border: 1px solid transparent;
+  }
+
+  .title-img-small {
+    width: 90vw;
+    height: auto;
+    margin: 2rem auto;
   }
 
   .contributor-card {

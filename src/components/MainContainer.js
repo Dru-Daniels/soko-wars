@@ -10,6 +10,7 @@ const MainContainer = () => {
       <h1 className="header-img"><img
         src="https://fontmeme.com/permalink/210325/a3c7665f6f68395fa866952a89d1bd2a.png"
         alt="Soko Wars"
+        className='title-img-small'
       /></h1>
       <GameShow />
       <ContributorsSection/>

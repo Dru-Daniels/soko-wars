@@ -8,6 +8,7 @@ const ContributorsSection = () => {
   return (
     <section className="contributors-container" id='contributors'>
       <h1 className="header-img contributors-header-img"><img
+        className='title-img-small'
         src="https://fontmeme.com/permalink/210322/d397da41137c989437cf6adce0f6eec6.png"
         alt="Meet the Team"
       /></h1>
