@@ -389,9 +389,78 @@ i:hover {
   padding: .5rem;
 }
 
+// Tag Section
+.tag-section {
+  height: 250px;
+  padding: 1rem;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.tag-section i {
+  color: #76ccc9;
+  font-size: 45px;
+}
+
+.tag-section i:hover {
+  text-shadow: none;
+}
+
+.tag-section a {
+  border-bottom: none;
+  margin: 0 1rem 0 0 ;
+}
+
+.tag-section a:hover {
+  opacity: .5;
+}
+
+.mintbean-logo {
+  height: 35px;
+  padding: .75rem;
+}
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: #fff;
+  color: #5ea09e;
+  text-align: center;
+  border-radius: 5px;
+  padding: 3px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: 130%;
+  left: 50%;
+  margin-left: -60px;
+}
+
+.tooltip .tooltiptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #76ccc9 transparent transparent transparent;
+  opacity: 1;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
+
 // Footer
 .footer {
-  margin-top: 175px;
   background-color: #000;
   background-image: url(https://lumiere-a.akamaihd.net/v1/images/open-uri20150608-27674-lashgn_719bef9d.jpeg?region=0%2C0%2C1200%2C675);
   background-repeat: no-repeat;
@@ -401,6 +470,26 @@ i:hover {
 }
 
 // Media Queries
+@media screen and (max-width: 1000px) {
+  
+  .contributor-card {
+    margin:1rem;
+  }
+  .contributor-title-sub {
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
+  }
+
+  #phaser-container {
+    margin-top: 2rem;
+  }
+
+  .ds-top-sm, .ds-btm-sm {
+    width: 100vw;
+  }
+}
+
 @media screen and (max-width: 820px) {
 
   .nav-bar a:not(:first-child) {display: none;}
@@ -448,6 +537,16 @@ i:hover {
   
   .nav-bar a:focus:not(:first-child), .nav-bar a:active:not(:first-child)  {
     border: 1px solid transparent;
+  }
+
+  .title-img-small {
+    width: 90vw;
+    height: auto;
+    margin: 2rem auto;
+  }
+
+  .contributor-card {
+    margin: 1rem;
   }
 }
 

@@ -29,7 +29,7 @@ const NavBar = () => {
         <a href="/#contributors">
           <li>CREATORS</li>
         </a>
-        <a href="/#contributors">
+        <a href="/#contact">
           <li>CONTACT</li>
         </a>
       </div>

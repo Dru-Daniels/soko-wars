@@ -21,7 +21,7 @@ const GameShow = () => {
   return (
     <div id="phaser-container" >
       <div className='death-star-top' id='gameDiv' >
-        <img src={deathStarTop} />
+        <img src={deathStarTop} className='ds-top-sm'/>
         <img src={playBtn} onClick={toggleDeathStar} className='death-star-play-btn' id='showToggle' />
       </div>
       <div className='death-star-btm' id='hideToggle'>
@@ -29,7 +29,7 @@ const GameShow = () => {
         <img src={closeBtn} onClick={toggleDeathStar} className='death-star-close-btn' />
       </div>
       <div className='swing'>
-        <img src={deathStarBottom} />
+        <img src={deathStarBottom} className='ds-btm-sm'/>
       </div>
     </div>
   )
