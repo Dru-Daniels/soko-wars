@@ -2,6 +2,7 @@ import React from "react"
 
 import GameShow from './GameShow'
 import ContributorsSection from './ContributorsSection'
+import TagSection from './TagSection'
 
 const MainContainer = () => {
   return (
@@ -12,6 +13,7 @@ const MainContainer = () => {
       /></h1>
       <GameShow />
       <ContributorsSection/>
+      <TagSection/>
     </>
   );
 };
