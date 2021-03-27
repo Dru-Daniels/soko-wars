@@ -52,6 +52,6 @@ Complete all 10 levels to save the day!
 - [Ohad Porat](https://github.com/ohad-porat)
 - [Dru Daniels](https://github.com/Dru-Daniels)
 
-## Try it Out on Heroku:
+## Try it Out on Netlify:
 
-[Soko Wars](https://heroku.com)
+[Soko Wars](https://soko-wars.netlify.app/)
