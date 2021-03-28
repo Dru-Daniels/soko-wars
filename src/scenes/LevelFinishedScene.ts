@@ -26,8 +26,8 @@ export default class LevelFinishedScene extends Phaser.Scene {
 
     let levelFinishedText = 'Level Complete!'
     if (data.currentLevel + 1 > levels.levelsCount) {
-      levelFinishedText = `Congratulations!
-You Finished The Game`
+      levelFinishedText = `Level 10 Completed.
+You Win!`
     }
     this.add.text(320, 150, levelFinishedText, {
       fontFamily: 'Staatliches',
