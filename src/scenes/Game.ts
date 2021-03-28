@@ -79,8 +79,8 @@ export default class Game extends Phaser.Scene {
                 this.scene.start('game', { level: this.currentLevel })
             })
 
-        let soundIcon = 'sound-on'
         let mute = true
+        let soundIcon = 'sound-on'
         this.add.image(10, 10, soundIcon)
             .setInteractive()
             .on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
