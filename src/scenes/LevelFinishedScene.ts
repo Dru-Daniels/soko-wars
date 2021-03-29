@@ -1,8 +1,13 @@
 import Phaser from 'phaser'
 
 import { sharedInstance as levels } from '../levels/levelService'
+import { GameOverUtil } from "../utils/GameOverUtil"
+
+
 import retryButton from '../../public/assets/retry.png'
 import nextLevelButton from '../../public/assets/next-level.png'
+import playAgainButton from '../../public/assets/play-again.png'
+
 
 export default class LevelFinishedScene extends Phaser.Scene {
   constructor() {
@@ -12,6 +17,8 @@ export default class LevelFinishedScene extends Phaser.Scene {
   preload() {
     this.load.image('next-level-button', nextLevelButton)
     this.load.image('retry-button', retryButton)
+    this.load.image('play-again-button', playAgainButton)
+    this.load.video('finalScene', '../../public/assets/finalScene.mp4', 'canplaythrough', true);
   }
 
   create(d: { moves: number, currentLevel: number }) {
@@ -27,7 +34,13 @@ export default class LevelFinishedScene extends Phaser.Scene {
     let levelFinishedText = `Level ${data.currentLevel} Complete!`
     if (data.currentLevel + 1 > levels.levelsCount) {
       levelFinishedText = `Level 10 Completed.
-You Win!`
+      You Win!`
+      this.add.image(320, 400, 'play-again-button')
+        .setInteractive()
+        .on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
+          this.sound.play('click')
+          this.scene.start('game', { level: 1 })
+        })
     }
     this.add.text(320, 150, levelFinishedText, {
       fontFamily: 'Staatliches',
@@ -37,26 +50,24 @@ You Win!`
     })
       .setOrigin(0.5)
 
+
     this.add.text(320, 250, `Moves: ${data.moves}`, {
       fontFamily: 'Staatliches',
       fontSize: 30
     })
       .setOrigin(0.5)
 
-    let retryX = 150
+    // let retryX = 150
+
     if (data.currentLevel + 1 > levels.levelsCount) {
-      retryX = 320
+      return
     }
-    this.add.image(retryX, 400, 'retry-button')
+    this.add.image(150, 400, 'retry-button')
       .setInteractive()
       .on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
         this.sound.play('click')
         this.scene.start('game', { level: data.currentLevel })
       })
-
-    if (data.currentLevel + 1 > levels.levelsCount) {
-      return
-    }
     this.add.image(490, 400, 'next-level-button')
       .setInteractive()
       .on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
