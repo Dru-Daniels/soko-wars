@@ -48,7 +48,7 @@ export default class LevelFinishedScene extends Phaser.Scene {
         this.scene.start('game', { level: data.currentLevel })
       })
 
-    if (data.currentLevel + 1 > levels.levelsCount) {
+    if (data.currentLevel + 1 > levels.levelsCount){
       return
     }
     this.add.image(490, 400, 'next-level-button')
