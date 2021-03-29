@@ -269,8 +269,8 @@ export default class Game extends Phaser.Scene {
 
         this.targetsCoveredByColor[color] = change
 
-        this.targetsCoveredByColor[color] += change 
-        if (change > 0){
+        this.targetsCoveredByColor[color] += change
+        if (change > 0) {
             this.sound.play('confirmation')
         }
     }
