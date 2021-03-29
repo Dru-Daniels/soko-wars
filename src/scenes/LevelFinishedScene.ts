@@ -24,7 +24,12 @@ export default class LevelFinishedScene extends Phaser.Scene {
     const width = this.scale.width
     const height = this.scale.height
 
-    this.add.text(width * 0.5, height * 0.4, `Level ${data.currentLevel} Complete!`, {
+    let levelFinishedText = `Level ${data.currentLevel} Complete!`
+    if (data.currentLevel + 1 > levels.levelsCount) {
+      levelFinishedText = `Level 10 Completed.
+      You Win!`
+    }
+    this.add.text(320, 150, levelFinishedText, {
       fontFamily: 'Staatliches',
       color: '#d4fa00',
       fontSize: 48,
@@ -49,7 +54,7 @@ export default class LevelFinishedScene extends Phaser.Scene {
         this.scene.start('game', { level: data.currentLevel })
       })
 
-    if (data.currentLevel + 1 > levels.levelsCount){
+    if (data.currentLevel + 1 > levels.levelsCount) {
       return
     }
     this.add.image(490, 400, 'next-level-button')
