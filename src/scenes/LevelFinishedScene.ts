@@ -24,7 +24,7 @@ export default class LevelFinishedScene extends Phaser.Scene {
     const width = this.scale.width
     const height = this.scale.height
 
-    this.add.text(width * 0.5, height * 0.4, 'Level Complete!', {
+    this.add.text(width * 0.5, height * 0.4, `Level ${data.currentLevel} Complete!`, {
       fontFamily: 'Staatliches',
       color: '#d4fa00',
       fontSize: 48
