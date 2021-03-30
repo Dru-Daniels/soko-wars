@@ -25,8 +25,8 @@ const showDS = () => {
   let topDS = document.getElementById("dsTop")
   let btDS = document.getElementById("dsBtm")
   if(vid.style.display === 'block') {
-    topDS.style.opacity = '.2'
-    btDS.style.opacity= '.2'
+    topDS.style.opacity = '.15'
+    btDS.style.opacity= '.15'
   }
 }
 
