@@ -67,7 +67,12 @@ export default class Game extends Phaser.Scene {
 
         this.extractBoxes(this.layer)
 
-        this.movesCountLabel = this.add.text(520, -2, `Moves: ${this.movesCount}`, {
+        this.movesCountLabel = this.add.text(520, 30, `Moves: ${this.movesCount}`, {
+            fontFamily: 'Abel',
+            fontSize: 25
+        })
+
+        this.levelCountLabel = this.add.text(520, -2, `Level: ${this.currentLevel}`, {
             fontFamily: 'Abel',
             fontSize: 25
         })
@@ -248,7 +253,7 @@ export default class Game extends Phaser.Scene {
         if (!this.movesCountLabel) {
             return
         }
-        this.movesCountLabel.text = `Moves ${this.movesCount}`
+        this.movesCountLabel.text = `Moves: ${this.movesCount}`
     }
 
     private stopPlayerAnimation() {
