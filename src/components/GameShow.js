@@ -6,7 +6,6 @@ import deathStarTop from '../../public/assets/deathStarTop.png'
 import deathStarBottom from '../../public/assets/deathStarBottom.png'
 import playBtn from '../../public/assets/play.png'
 import closeBtn from '../../public/assets/close.png'
-import finalScene from '../../public/assets/finalScene.mp4'
 
 const GameShow = () => {
 
@@ -31,7 +30,7 @@ const GameShow = () => {
       </div>
       <div className='death-star-btm' id='hideToggle'>
         <video autoPlay muted width="500px" height="500px" preload="metadata"  id="myVideo">
-          <source allowFullScreen preload='auto' type="video/mp4" src={finalScene} />
+          <source allowFullScreen preload='auto' type="video/mp4" src='https://media.giphy.com/media/o2tupc9bzQTUA/giphy.mp4' />
         </video>
         <div className='phaser-canvas' id='phaser-parent'></div>
         <img src={closeBtn} onClick={toggleDeathStar} className='death-star-close-btn'/>

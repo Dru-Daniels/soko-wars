@@ -18,7 +18,6 @@ export default class LevelFinishedScene extends Phaser.Scene {
     this.load.image('next-level-button', nextLevelButton)
     this.load.image('retry-button', retryButton)
     this.load.image('play-again-button', playAgainButton)
-    this.load.video('finalScene', '../../public/assets/finalScene.mp4', 'canplaythrough', true);
   }
 
   create(d: { moves: number, currentLevel: number }) {
