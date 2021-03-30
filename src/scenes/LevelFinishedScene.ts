@@ -1,7 +1,7 @@
 import Phaser from 'phaser'
 
 import { sharedInstance as levels } from '../levels/levelService'
-import { GameOverUtil } from "../utils/GameOverUtil"
+import { getFinalVid, getFinalVidHide } from "../utils/GameOverUtil"
 
 
 import retryButton from '../../public/assets/retry.png'
@@ -28,18 +28,17 @@ export default class LevelFinishedScene extends Phaser.Scene {
 
     const data = Object.assign({ moves: 0, currentLevel: 1 }, d)
 
-    const width = this.scale.width
-    const height = this.scale.height
-
     let levelFinishedText = `Level ${data.currentLevel} Complete!`
     if (data.currentLevel + 1 > levels.levelsCount) {
-      levelFinishedText = `Level 10 Completed.
-      You Win!`
+      getFinalVid()
+      levelFinishedText = `Death Star Destroyed!  
+You Win!`
       this.add.image(320, 400, 'play-again-button')
         .setInteractive()
         .on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
           this.sound.play('click')
           this.scene.start('game', { level: 1 })
+          getFinalVidHide()
         })
     }
     this.add.text(320, 150, levelFinishedText, {
@@ -50,14 +49,11 @@ export default class LevelFinishedScene extends Phaser.Scene {
     })
       .setOrigin(0.5)
 
-
     this.add.text(320, 250, `Moves: ${data.moves}`, {
       fontFamily: 'Staatliches',
       fontSize: 30
     })
       .setOrigin(0.5)
-
-    // let retryX = 150
 
     if (data.currentLevel + 1 > levels.levelsCount) {
       return

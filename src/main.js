@@ -13,6 +13,7 @@ const config = {
 	parent: 'phaser-parent',
 	width: 640,
 	height: 512,
+	transparent: true,
 	physics: {
 		default: 'arcade',
 		arcade: {
