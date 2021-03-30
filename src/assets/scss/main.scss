@@ -237,6 +237,9 @@ i:hover {
 // DeathStar
 #phaser-container {
   background-color: black;
+  background-position: center;
+  background-size: 1200px auto;
+  background-repeat: no-repeat;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -246,6 +249,7 @@ i:hover {
 
 .death-star-top {
   position: relative;
+  z-index: 12;
 }
 
 .death-star-btm {
@@ -270,6 +274,7 @@ i:hover {
   max-width: 550px;
   -webkit-transition: all 1s cubic-bezier(0.165, 0.84, 0.44, 1);
   transition: all 1s cubic-bezier(0.165, 0.84, 0.44, 1);
+  z-index: 12;
 }
 
 .death-star-play-btn:hover, 
@@ -286,6 +291,25 @@ i:hover {
   align-items: center;
   padding-top: 50px;
   padding-bottom: 50px;
+  z-index: 2;
+}
+
+#myVideo {
+  position: absolute;
+  display: none;
+  margin: 0 auto;
+  text-align: center;
+  right: -27%;
+  top: -14%;
+  width: 1000px;
+  height: auto;
+  min-width: 100%;
+  min-height: 100%;
+  z-index: 0;
+}
+
+.swing {
+  z-index: 2;
 }
 
 // MainContainer
