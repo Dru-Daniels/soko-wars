@@ -1,5 +1,6 @@
 # Soko Wars
 
+
 ## Description
 
 After boarding the Death Star to rescue Princess Leia, R2-D2 has been given a secret mission by the Rebel Alliance to move explosive crates to key locations.
@@ -7,6 +8,10 @@ After boarding the Death Star to rescue Princess Leia, R2-D2 has been given a se
 Your mission is to assist R2 in destroying the Empire's ultimate weapon. But be careful, certain crates will only be activated if put in precisely the right location.
 
 May the Force be with you.
+
+## Try it Out on Netlify:
+
+[Soko Wars](https://soko-wars.netlify.app/)
 
 ## Installation
 
@@ -52,6 +57,4 @@ Complete all 10 levels to save the day!
 - [Ohad Porat](https://github.com/ohad-porat)
 - [Dru Daniels](https://github.com/Dru-Daniels)
 
-## Try it Out on Netlify:
 
-[Soko Wars](https://soko-wars.netlify.app/)
